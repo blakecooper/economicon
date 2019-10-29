@@ -38,6 +38,11 @@
 				$("totalOilProduced").innerHTML = (Number($("reservesNativeCurrency").value) / cost(PRODUCE, "oil", "nativecurrency")) + (Number($("reservesGold").value) / cost(PRODUCE, "oil", "gold"));
 				$("totalTechProduced").innerHTML = (Number($("reservesNativeCurrency").value) / cost(PRODUCE, "tech", "nativecurrency")) + (Number($("reservesGold").value) / cost(PRODUCE, "tech", "gold"));
 
+
+				$("purchaseCostForGrain").innerHTML = cost(PURCHASE, "grain", "nativecurrency") + " (native currency), " + cost(PURCHASE, "grain", "gold") + " (gold)";
+				$("purchaseCostForOil").innerHTML = cost(PURCHASE, "oil", "nativecurrency") + " (native currency), " + cost(PURCHASE, "oil", "gold") + " (gold)";
+				$("purchaseCostForTech").innerHTML = cost(PURCHASE, "tech", "nativecurrency") + " (native currency), " + cost(PURCHASE, "tech", "gold") + " (gold)";
+
 				$("totalGrainPurchase").innerHTML = (Number($("reservesNativeCurrency").value) / cost(PURCHASE, "grain", "nativecurrency")) + (Number($("reservesGold").value) / cost(PURCHASE, "grain", "gold"));
 				$("totalOilPurchase").innerHTML = (Number($("reservesNativeCurrency").value) / cost(PURCHASE, "oil", "nativecurrency")) + (Number($("reservesGold").value) / cost(PURCHASE, "oil", "gold"));
 				$("totalTechPurchase").innerHTML = (Number($("reservesNativeCurrency").value) / cost(PURCHASE, "tech", "nativecurrency")) + (Number($("reservesGold").value) / cost(PURCHASE, "tech", "gold"));
@@ -84,11 +89,15 @@
 		<p>Production cost for grain: <div id="productionCostForGrain"></div>
 		<br>Production cost for oil: <div id="productionCostForOil"></div>
 		<br>Production cost for tech: <div id="productionCostForTech"></div>
-		
+		<hr>		
 		<p>Total amount of grain that can be produced: <div id="totalGrainProduced"></div>
 		<br>Total ammount of oil that can be produced: <div id="totalOilProduced"></div>
 		<br>Total amount of tech that can be produced: <div id="totalTechProduced"></div>
-
+		<hr>
+		<br>Purchase cost for grain: <div id="purchaseCostForGrain"></div>
+		<br>Purchase cost for oil: <div id="purchaseCostForOil"></div>
+		<br>Purchase cost for tech: <div id="purchaseCostForTech"></div>
+		<hr>
 		<p>Total amount of grain that can be purchased: <div id="totalGrainPurchase"></div>
 		<br>Total amount of oil that can be purhcased: <div id="totalOilPurchase"></div>
 		<br>Total amount of tech that can be purchased: <div id="totalTechPurchase"></div>
