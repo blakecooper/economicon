@@ -1,0 +1,43 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<h1>Economicon</h1>
+<p>Starting amounts simulator</p>
+<p><b>In reserves:</b>
+<br>Gold: <input type="text" name="reservesGold" value="0">
+<br>Native currency: <input type="text" name="reservesNativeCurrency" value="0">
+<br>Player 2 currency: <input type="text" name="reservesP2Currency" value="0">
+<br>Player 3 currency: <input type="text" name="reservesP3Currency" value="0">
+<br>Player 4 currency: <input type="text" name="reservesP4Currency" value="0">
+<br>Grain:<input type="text" name="reservesGrain" value="0">
+<br>Oil:<input type="text" name="reservesOil" value="0">
+<br>Tech:<input type="text" name="reservesTech" value="0">
+<br>Peg: <select name="peg">
+	<option value="gold">Gold</option>
+	<option value="grain">Grain</option>
+	<option value="oil">Oil</option>
+	<option value="tech">Tech</option>
+	<option value="p2Currency">Player 2 currency</option>
+	<option value="p3Currency">Player 3 currency</option>
+	<option value="p4Currency">Player 4 currency</option>
+</select>
+
+<p><b>In the marketplace:</b>
+<br>Gold: <input type="text" name="marketGold" value="0">
+<br>Native currency: <input type="text" name="marketNativeCurrency" value="0">
+<br>Player 2 currency: <input type="text" name="marketP2Currency" value="0">
+<br>Player 3 currency: <input type="text" name="marketP3Currency" value="0">
+<br>Player 4 currency: <input type="text" name="marketP4Currency" value="0">
+<br>Grain:<input type="text" name="marketGrain" value="0">
+<br>Oil:<input type="text" name="marketOil" value="0">
+<br>Tech:<input type="text" name="marketTech" value="0">
+
+<p><button type="button" onClick="simulate()">Simulate!</button>
+<p><div id="results"></div>
+
+</body>
+</html> 
