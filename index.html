@@ -1,99 +1,180 @@
- <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
-		<script>
-			const PRODUCE = 0;
-			const PURCHASE = 1;
+ <title>Economicon</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-			function $(id) {
-				return document.getElementById(id);
-			};
+<!-- Customized style for this page -->
+<link rel="stylesheet" href="assets/callout.css">
+<link rel="stylesheet" href="assets/style.css">
 
-			function cost(action, commodity, unitOfPurchase) {
-				let marketCommodity = "market" + commodity;
-				let purchaseUnit = "market";
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-				if (unitOfPurchase === "nativecurrency") {
-					purchaseUnit = purchaseUnit + $("peg").value;
-				} else {
-					purchaseUnit = purchaseUnit + unitOfPurchase;
-				};
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
-				let factor = 1;
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-				if (action === PRODUCE) {
-					factor = .5;
-				};
+<!-- It's responsive! -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-				return factor * (Number($(purchaseUnit).value) / Number($(marketCommodity).value));
-			};
+<!-- MathJax (not currently using)-->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-			function simulate() {
-				$("productionCostForGrain").innerHTML = cost(PRODUCE, "grain", "nativecurrency");
-				$("productionCostForOil").innerHTML = cost(PRODUCE, "oil", "nativecurrency");
-				$("productionCostForTech").innerHTML = cost(PRODUCE, "tech", "nativecurrency");
+<!-- Initialize popovers -->
+<script>
+$(document).ready(function(){
+	$('[data-toggle="popover"]').popover({
+		html: true	
+	}); 
 
-				$("totalGrainProduced").innerHTML = (Number($("reservesNativeCurrency").value) / cost(PRODUCE, "grain", "nativecurrency")) + (Number($("reservesGold").value) / cost(PRODUCE, "grain", "gold"));
-				$("totalOilProduced").innerHTML = (Number($("reservesNativeCurrency").value) / cost(PRODUCE, "oil", "nativecurrency")) + (Number($("reservesGold").value) / cost(PRODUCE, "oil", "gold"));
-				$("totalTechProduced").innerHTML = (Number($("reservesNativeCurrency").value) / cost(PRODUCE, "tech", "nativecurrency")) + (Number($("reservesGold").value) / cost(PRODUCE, "tech", "gold"));
-
-				$("totalGrainPurchase").innerHTML = (Number($("reservesNativeCurrency").value) / cost(PURCHASE, "grain", "nativecurrency")) + (Number($("reservesGold").value) / cost(PURCHASE, "grain", "gold"));
-				$("totalOilPurchase").innerHTML = (Number($("reservesNativeCurrency").value) / cost(PURCHASE, "oil", "nativecurrency")) + (Number($("reservesGold").value) / cost(PURCHASE, "oil", "gold"));
-				$("totalTechPurchase").innerHTML = (Number($("reservesNativeCurrency").value) / cost(PURCHASE, "tech", "nativecurrency")) + (Number($("reservesGold").value) / cost(PURCHASE, "tech", "gold"));
-			};
-		</script>
+});
+</script>
 </head>
 <body>
+	<div class="container-fluid">
+		<div class="jumbotron">
+			<h1><b>Economicon</b></h1>
+			<p>Rules Document v. 0.1
+			<br>Updated 2019-10-28</p>
+		</div>
 
-<h1>Economicon</h1>
-<p>Starting amounts simulator</p>
-<p><b>In reserves:</b>
-<br>Gold: <input type="text" id="reservesGold" value="0">
-<br>Native currency: <input type="text" id="reservesNativeCurrency" value="0">
-<br>Player 2 currency: <input type="text" id="reservesP2Currency" value="0">
-<br>Player 3 currency: <input type="text" id="reservesP3Currency" value="0">
-<br>Player 4 currency: <input type="text" id="reservesP4Currency" value="0">
-<br>Grain:<input type="text" id="reservesGrain" value="0">
-<br>Oil:<input type="text" id="reservesOil" value="0">
-<br>Tech:<input type="text" id="reservesTech" value="0">
-<br>Peg: <select id="peg" id="peg">
-	<option value="gold">Gold</option>
-	<option value="grain">Grain</option>
-	<option value="oil">Oil</option>
-	<option value="tech">Tech</option>
-	<option value="p2currency">Player 2 currency</option>
-	<option value="p3currency">Player 3 currency</option>
-	<option value="p4currency">Player 4 currency</option>
-	<option value="nativecurrency">No peg</option>
-</select>
-
-<p><b>In the marketplace:</b>
-<br>Gold: <input type="text" id="marketgold" value="1">
-<br>Native currency: <input type="text" id="marketnativecurrency" value="1">
-<br>Player 2 currency: <input type="text" id="marketp2currency" value="1">
-<br>Player 3 currency: <input type="text" id="marketp3currency" value="1">
-<br>Player 4 currency: <input type="text" id="marketp4currency" value="1">
-<br>Grain:<input type="text" id="marketgrain" value="1">
-<br>Oil:<input type="text" id="marketoil" value="1">
-<br>Tech:<input type="text" id="markettech" value="1">
-
-<p><button type="button" onClick="simulate()">Simulate!</button>
-<p>
-<div id="results">
-		<p>Production cost for grain: <div id="productionCostForGrain"></div>
-		<br>Production cost for oil: <div id="productionCostForOil"></div>
-		<br>Production cost for tech: <div id="productionCostForTech"></div>
+		<h2>Welcome to Economicon!</h2>
 		
-		<p>Total amount of grain that can be produced: <div id="totalGrainProduced"></div>
-		<br>Total ammount of oil that can be produced: <div id="totalOilProduced"></div>
-		<br>Total amount of tech that can be produced: <div id="totalTechProduced"></div>
+		<p>When playing Economicon, you assume the role of the mightiest of all bureaucrats: the central banker. The responsibility is yours, and yours alone, to ensure that your nation's economy is strong and stable. Yet, despite the awesome power you wield, your challenges are many, and your tools are few.</p>
 
-		<p>Total amount of grain that can be purchased: <div id="totalGrainPurchase"></div>
-		<br>Total amount of oil that can be purhcased: <div id="totalOilPurchase"></div>
-		<br>Total amount of tech that can be purchased: <div id="totalTechPurchase"></div>
+		<p>A game of Economicon lasts ten rounds. Each round, you'll strategically set your nation's <a href=#" id="popover_currencyPeg" data-toggle="popover"  title="Currency Peg" data-content="">monetary policy</a>, encourage <a href="#" id="popover_production" data-toggle="popover"  title="Production" data-content="">production</a> of goods from various sectors of your economy, then arrange to <a href="#" id="popover_trading" data-toggle="popover"  title="Trading" data-content"">sell those goods on the global market</a>, all while contending with meddling lawmakers whose <a href="#" id="popover_laws" data-toggle="popover"  title="Laws" data-content="">laws</a> may or may not help you achieve your goals. You'll also have to decide how (or whether) to work with bankers from other nations to respond to chaotic <a href=#" id="popover_globalEvents" data-toggle="popover"  title="Global Events" data-content="">global events</a>, the outcomes of which could usher in a new era of prosperity for your nation... or ruin it!
 
-</div>
+		<p>At the end of ten rounds, the winner of Economicon is the player who has amassed the most valuable assets in their nation's <a href="#" id = "popover_reserveBank" data-toggle="popover"  title="Reserve Bank" data-content="">reserve bank</a>... provided their economy isn't too volatile! You may receive <a href="#" id="popover_volatilityTokens" data-toggle="popover"  title="Volatility Tokens" data-content="">volatility tokens</a> if your nation's citizens are unemployed, resources become scarce, or you break the law. No player can win the game with three or greater volatility tokens.</p>
 
+		<div class="bd-callout bd-callout-info">
+			<h4>Thank you (a disclaimer)</h4>
+			<p><b>*This is the first-ever round of play testing!*</b> I hope this game is fun, challenging and competitive... but I won't know until you play it! Please share any feedback with me via <a href="mailto:contact@blake-cooper.com">email</a>, or fill out the <a href="https://forms.gle/iVnNveo85b9exVC37" target="_blank">play tester evaluation form.</a></p>
+			<p>Sincerely, thank you for taking the time to play test this game... and apologies if you find it boring, frustrating or even unplayable at this early stage.</p>
+		</div>
+
+		<h2>How to play</h2>
+
+		<h4>Before play begins</h4>
+
+		<p>Each player puts XXXX into reserves. XXXX is placed in the open market. Each player places a unit of gold on their peg counter, as each player begins the game on a gold standard.</p>
+
+		<p>Shuffle the global events and law cards.</p>
+
+		<h4>Rounds</h4>
+		<div id="rounds"></div>
+
+		<h4>Winning the game</h4>
+
+		<p>After ten rounds, everybody adds up the value of all holdings in their reserves. Unlike when making purchases, every banker uses gold as the payment unit in the numerator of the value function when determining their reserves' final value.</p>
+
+		<p>The player has the most valuable economy of all players without possessing greater than three volatility tokens is the winner.</p>
+
+		<h2>Definitions</h2>
+
+		<h4>Commodities</h4>
+
+		<p>There are three commodities in Economicon: grain, oil and tech. Commodities are produced by nations, and bought and sold on the open market. A nation's population also consumes commodities each turn. Commodities can be used as a currency peg. 
+		
+		<h4>Consumption Requirement</h4>
+
+		<p>Each round, the citizens of your nation will consume a number of commodities from your central reserve bank equal to the number of laws in effect. When commodities are consumed in this way, discard them from play.
+
+		<h4>Currency</h4>
+
+		<p>Currency is used by nations to make purchases. Its value is determined either by the value of the unit to which it is "pegged," or by its own scarcity on the market (if no peg is determined). Currency can also be bought and sold in the marketplace, and a player can use another player's currency as their currency's peg.
+
+		<h4>Currency Peg</h4>
+		<div id="currencyPeg"></div>
+
+		<h4>Global Events</h4>
+		<div id="globalEvents"></div>
+
+		<h4>Gold</h4>
+
+		<p>Gold works a little differently than commodities or currency. <b>It is mined</b>, not created, meaning its supply is more stable. <b>Gold counts as a universal currency</b>, meaning every player may use their supply of gold to pay for their purchases. <b>Players can also peg their currency to the value of gold.</b> <b>The banker with the msot gold in reserves gets to go first</b> whenever order of play matters. At the end of the game, <b>gold is the unit of currency used to determine the value of your reserve holdings</b>. 
+		
+		<h4>Laws</h4>
+		<div id="laws"></div>
+
+		<h4>Mining</h4>
+
+		<p>At the beginning of each round, every nation mines gold by rolling a d6, and placing that number of new units of gold into their reserves.
+
+		<h4>Native currency</h4>
+
+		<p>Native currency refers to the currency your nation uses to make purchases. Each nation has its own standard currency it can use for this purpose. <b>Any nation can also use gold to make purchases.</b> Other currencies and even commodities may also be used as native currency under special circumstances (when stated).
+
+		<h4>Order of play</h4>
+
+		<p>When relevant (e.g., during the trading phase), <b>players take turns in order based on who has the most gold in reserves</b>.. Ties are broken by rolling dice.
+
+		<h4>Production</h4>
+		<div id="production"></div>
+
+		<h4>Production Cost</h4>
+
+		<p>The cost to produce any commodity is equal to <b>half the commodity's value on the open market</b>.
+
+		<h4>Production Requirement</h4>
+
+		<p>Each round during the production phase, your population must be put to work producing at least one of each type of commodity per law in effect. You must be able to pay all production costs to meet this requirement.
+
+		<h4>Reserve bank</h4>
+		<div id="reserveBank"></div>
+
+		<h4>Rewards and penalties</h4>
+
+		<p>If during a given round you complied with both your nation's production and consumption requirements, and its laws, you may add one gold to your reserves and remove one volatility token. Otherwise, gain a volatility token.
+
+		<h4>Resolving the global event</h4>
+
+		<p>The final action in a given round, determine whether the players were successful in achieving the goal stated on the card. Enact the "Success" or "Failure" outcomes as appropriate.
+
+		<h4>Trading</h4>
+		<div id="trading"></div>
+
+		<h4>Unit</h4>
+
+		<p>A unit refers to one token of any type of currency, commodity or gold. 
+
+		<h4>Value</h4>
+		<div id="value"></div>
+
+		<h4>Volatility token</h4>
+		<div id="volatilityTokens"></div>
+
+		<h2>Included in the game</h2>
+
+		<p>A game of Economicon can be played using the following items:
+
+		<br>- 24 Volatility tokens
+		<br>- XXX  gold counters
+		<br>- XXX  grain counters (divided among four players, each marked with that player's color)
+		<br>- XXX  oil counters (divided among four players, each marked with that player's color)
+		<br>- XXX  tech counters (divided among four players, each marked with that player's color)
+		<br>- XXX  currency counters (divided among four players, each marked with that player's color)
+		<br>- 4 Peg tokens
+		<br>- Deck of 10 global events
+		<br>- Deck of XXX laws, divided by each player
+
+		<p>A print-and-play version may be available here at some point in the future.
+
+		<h2>Contact and License</h2>
+
+		To contact the author of this document with questions, email <a href="mailto:contact@blake-cooper.com">contact@blake-cooper.com</a>.
+
+		<div class="bd-callout bd-callout-info">
+			<h4>Have you play tested this game?</h4>
+			<p>What did you think? Please take a moment and fill out the <a href="https://forms.gle/iVnNveo85b9exVC37" target="_blank">play tester evaluation form</a>
+		</div>
+
+		<p>This version of the Economicon rules document is licensed under the Open Game License (OGL), which grants "permission to modify, copy, and redistribute" the information here, provided you follow the rules for share-alike and derivative works. Also, if you do modify, copy or redistribute this game, please let me know! Email contact@blake-cooper.com
+
+		<script src="assets/definitions.js"></script>
+	</div>
 </body>
-</html> 
+</html>
