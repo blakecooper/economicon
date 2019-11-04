@@ -43,12 +43,7 @@ $(document).ready(function(){
 		</div>
 
 		<h2>Welcome to Economicon!</h2>
-		
-		<p>When playing Economicon, you assume the role of the mightiest of all bureaucrats: the central banker. The responsibility is yours, and yours alone, to ensure that your nation's economy is strong and stable. Yet, despite the awesome power you wield, your challenges are many, and your tools are few.</p>
-
-		<p> Each round of Economicon, you'll strategically set your nation's <a href=#" id="popover_currencyPeg" data-toggle="popover"  title="Currency Peg" data-content="">monetary policy</a>, encourage <a href="#" id="popover_production" data-toggle="popover"  title="Production" data-content="">production</a> of goods from various sectors of your economy, then arrange to <a href="#" id="popover_trading" data-toggle="popover"  title="Trading" data-content"">trade those and other items on the global market</a>, all while contending with meddling lawmakers whose <a href="#" id="popover_laws" data-toggle="popover"  title="Laws" data-content="">laws</a> may or may not help you achieve your goals. You'll also have to decide how (or whether) to work with bankers from other nations to respond to chaotic <a href=#" id="popover_globalEvents" data-toggle="popover"  title="Global Events" data-content="">global events</a>, the outcomes of which could usher in a new era of prosperity for your nation... or ruin it!
-
-		<p>At the end of the game, the winner of Economicon is the player who has amassed the most valuable assets in their nation's <a href="#" id = "popover_reserveBank" data-toggle="popover"  title="Reserve Bank" data-content="">reserve bank</a>... provided their economy isn't too volatile! You may receive <a href="#" id="popover_volatilityTokens" data-toggle="popover"  title="Volatility Tokens" data-content="">volatility tokens</a> if your nation's citizens are unemployed, resources become scarce, or you break the law. No player can win the game with three or greater volatility tokens.</p>
+		<p>When playing Economicon, you assume the role of the mightiest of all bureaucrats: the central banker. Your goal is to help your nation amass the most valuable assets while minimizing volatility.		
 
 		<div class="bd-callout bd-callout-info">
 			<h4>Thank you (a disclaimer)</h4>
@@ -56,22 +51,41 @@ $(document).ready(function(){
 			<p>Sincerely, thank you for taking the time to play test this game... and apologies if you find it boring, frustrating or even unplayable at this early stage.</p>
 		</div>
 
-		<h2>How to play</h2>
+		<h2>Getting ready to play</h2>
 
-		<h4>Before play begins</h4>
+		<p>Each player sits around a table and sets up their reserve bank in front of them.
+		<p>Start with these resources in your reserve bank:
+		<p><ul>
+				<li>Gold: 10 units</li>
+				<li>Currency (yours): 8 unites</li>
+			</ul>
 
-		<p>Each player puts XXXX into reserves. XXXX is placed in the open market. Each player places a unit of gold on their peg counter, as each player begins the game on a gold standard.</p>
+		<p>In the center of the table is the market: almost everything you and your fellow players buy or sell during a game of Economicon passes through the market. 
+		<p>Start with theses resources in the market:
+		<p><ul>
+				<li>Gold: 8 units</li>
+				<li>Goods: 4 grain, 2 oil, 1 tech</li>
+				<li>Currency: 1 of each</li>
+		</ul>
 
-		<p>Shuffle the global events and law cards.</p>
+		<h2>The basic idea</h2>
 
-		<h4>Rounds</h4>
+		<p><b>Economicon is a resource trading game whose core mechanic is based on supply and demand</b>: when fewer resources are available in the market, those resources become more valuable. 
+		<p>Any time you are buying, selling or otherwise trading in Economicon, the value of a unit is determined in real time by dividing the number of units you’re paying with in the global market by the number of units you’re buying in the global market. 
+
+		<div class="bd-callout bd-callout-info">
+			<h4>Example</h4>
+			<p>Say you want to use the gold in your reserve bank to buy grain on the global market. There are currently 5 units of gold in the market, and 7 units of grain. So the cost for each unit of grain is <b>5/7</b> = roughly .71 units of gold. In Economicon, rounding goes to the nearest .25, so in this case each unit of grain cost .75 gold.
+		</div>
+
+		<p>By strategically buying up resources (or, inversely, flooding the market with them), you can raise or lower the value of those resources in a way that affects every player’s purchasing power, and the value of their reserve holdings.
+
+		<h2>Winning the game</h2>
+
+		<p>At the end of the game, the player with the most valuable reserve bank holdings wins, if they have fewer than three volatility tokens.
+
+		<h2>Rounds</h2>
 		<div id="rounds"></div>
-
-		<h4>Winning the game</h4>
-
-		<p>At the end of the game, everybody adds up the value of all holdings in their reserves. Unlike when making purchases, every banker uses gold as the payment unit in the numerator of the value function when determining their reserves' final value.</p>
-
-		<p>The player has the most valuable economy of all players without possessing greater than three volatility tokens is the winner.</p>
 
 		<h2>Definitions</h2>
 
