@@ -43,21 +43,8 @@
 		<h2>The basic idea</h2>
 
 		<p><b>Economicon is a resource trading game based on supply and demand</b>.  When fewer resources are available, those resources become more valuable. 
-		<p>Any time you buy, sell or trade in Economicon, the cost of a unit is calculated using the following formula:
 
-		<div class="bd-callout bd-callout-info">
-			<h4>Value formula</h4>
-		<p>  \[cost = { {The\ available\ number\ of\ units\ you're\ \textbf{paying}\ with} \over {The\ available\ number\ of\ units\ you're\ \textbf{buying}}}\]
-		</div>
-		<div class="bd-callout bd-callout-info">
-			<h4>Example</h4>
-			<p>Say you have a pile of gold burning a hole in your reserve bank, and you need to buy 2 grain to meet your nation's <a href="#consumptionrequirement">consumption requirement</a> this turn.
-			<p>There are currently <b>5 gold</b> in the market, and <b>7 grain</b>. So the cost for each unit of grain is <b>5/7</b> = roughly .71 gold per unit of grain. <b>Rounding goes to the nearest .25 in Economicon</b>, so <b>each unit of grain cost .75 gold.</b> You pay 1.5 gold from reserves, and the grain is yours! 
-			<p>The player after you had exactly the same idea: they want to spend their gold to buy 2 grain. Now there are <b>5 grain</b> in the market. <b>So when the next player goes to buy 2 grain, each unit will cost 5/5 = 1 unit of gold.</b>
-			<p>The next player will pay more because grain is now scarcer, and therefore more valuable. 
-		</div>
-
-		<p>By strategically buying up resources (or, inversely, flooding the market with them), you can raise or lower the value of those resources in a way that affects every player's purchasing power, and the value of the resources they already own.
+		<p>Any time you buy, sell or trade in Economicon, the cost of a unit changes, according to the <a href="#value">value formula</a>. By strategically buying up resources (or, inversely, flooding the market with them), you can raise or lower the value of those resources in a way that affects every player's purchasing power, and the value of the resources they already own.
 
 		<h2>Winning the game</h2>
 
@@ -203,7 +190,7 @@
 
 		<p>A unit refers to one token of any type of currency, commodity or gold. 
 
-		<h4 id="value">>Value</h4>
+		<h4 id="value">Value</h4>
 		<p>As in real life, the value of a gold, commodities and currency in Economicon is relative, based on supply and demand. The more scarce something is, the more you can expect to pay for it.
 		<p>Using a currency peg is a way to assign a value for your currency other than its inherent scarcity. When using a peg, your currency is exactly as valuable as the unit you have pegged it to.<p>When determining how much a commodity costs in Economicon, use the following formula:
 
@@ -211,6 +198,14 @@
 		<div class="bd-callout bd-callout-info">
 			<h4>Value formula</h4>
 		<p>  \[cost = { {The\ available\ number\ of\ units\ you're\ \textbf{paying}\ with} \over {The\ available\ number\ of\ units\ you're\ \textbf{buying}}}\]
+		</div>
+
+		<div class="bd-callout bd-callout-info">
+			<h4>Example</h4>
+			<p>Say you have a pile of <a href="#gold">gold</a> burning a hole in your <a href="#reservebank">reserve bank</a>, and you need to buy 2 grain to meet your nation's <a href="#consumptionrequirement">consumption requirement</a> this turn.
+			<p>There are currently <b>5 gold</b> in the market, and <b>7 grain</b>. So the cost for each unit of grain is <b>5/7</b> = roughly .71 gold per unit of grain. <b>Rounding goes to the nearest .25 in Economicon</b>, so <b>each unit of grain cost .75 gold.</b> You pay 1.5 gold from reserves, and the grain is yours! 
+			<p>The player after you had exactly the same idea: they want to spend their gold to buy 2 grain. Now there are <b>5 grain</b> in the market. <b>So when the next player goes to buy 2 grain, each unit will cost 5/5 = 1 unit of gold.</b>
+			<p>The next player will pay more because grain is now scarcer, and therefore more valuable. 
 		</div>
 
 
