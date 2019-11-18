@@ -28,7 +28,7 @@
 		<div class="jumbotron">
 			<h1><b>Economicon</b></h1>
 			<p>Rules Document v. 0.1
-			<br>Updated 2019-11-14</p>
+			<br>Updated 2019-11-17</p>
 		</div>
 
 		<h2>Welcome to Economicon!</h2>
@@ -123,75 +123,73 @@
 
 		<h4 id="exchangerate">Exchange Rate</h4>
 		
-		<p>Each turn, you may 'peg' your <a href="#currency">currency</a> to another unit of value by declaring your currency to have the same value. You can choose <a href="#gold">gold,</a>, a <a href="#commodities">commodity</a>, or another player's currency. Currency doesn't have to pegged to another unit, however. If your currency has no peg, its value is determined by its own scarcity in the market.
+		<p>Each turn, you may 'peg' your <a href="#currency">currency</a> to another unit of value by declaring it to have the same value. You can choose <a href="#gold">gold,</a>, a <a href="#commodities">commodity</a>, or another player's currency. Currency doesn't have to pegged to another unit, however. If your currency has no peg, its value is determined by its own scarcity in the market, just like anything else.
 		
-		<p>Each peg has its own advantages, and risks:
+		<p>When you choose another item as your currency peg, you may use that item in addition to your native currency to pay for purchases. Each choice you make about your currency's exchange rate has its own additional advantages and risks:
 
-		<p><b>Pegging to gold</b> makes your currency's value more stable, since gold can only be produced by <a href="#mining">mining</a>. But, since gold is a universal currency, you gain no unique advantage to using it to pay for purchases.
+		<p><b>Pegging to gold</b> makes your currency's value more stable, since gold can only be produced by <a href="#mining">mining</a>. But, since any player can pay for purchases with gold, you gain no advantage over other players using it to pay for purchases.
 
-		<p><b>Pegging to commodities like wheat, oil or tech</b>, on the other hand, allows you to spend that commodity from your <a href="#reservebank">reserves</a> as though it were your native currency, giving you more buying power. But the value of commodities can be unpredictable, because other players can produce, buy and sell commodities at will, causing shortages or surpluses that dramatically affect supply and demand.
-		<p><b>Pegging to another nation's currency</b> gives you the added security of tying your value to another player with a vested interest in maintaining its value and stability, effectively creating a de facto partnership, if not an official one. You also have the powerful benefit of trading directly with that nation: you may buy sell directly with that nation, without trading on the market (although you still pay market value). However, this subjugates your currency's value to the actions of another player. If they devalue or inflates their currency, deliberately or otherwise, you will indirectly suffer the consequences.
-		<p><b>Removing your currency peg altogether</b> is the only way to unlock one useful feature of the game: manipulating your currency's value by creating and destroying it at will. With no currency peg, you may at any time add new units of your currency to your resrves, or remove it from the game. This powerful control on supply and demand gives you the acute ability to manage your currency's value. But it can be its own downside, as you may unintentionally introduce inflation or deflation, crippling your economy in the process.
-		<p>If you remove your peg and then re-peg your currency to another unit, gain a volatility token. If you change your peg in any round where you also changed your peg in the previous round, you immediately gain a volatility token."
+		<p><b>Pegging to commodities like wheat, oil or tech</b> allows you to spend that commodity from your <a href="#reservebank">reserves</a> as though it were your native currency, giving you more buying power. But the value of commodities can be unpredictable, because other players can <a href="#production">produce</a>, buy and sell commodities at will, causing shortages or surpluses that dramatically affect supply and demand.
+		
+		<p><b>Pegging to another nation's currency</b> gives you the added security of tying your value to another player with a vested interest in maintaining its value and stability, effectively creating a de facto partnership. You also have the benefit of trading directly with that nation: you may buy sell directly with that nation, without trading on the market (although you must still pay <a href="#value">market value</a>). But this subjugates your currency's value to the actions of another player. If they devalue or inflate their currency, deliberately or otherwise, you will indirectly suffer the consequences.
+		
+		<p><b>Removing your currency peg altogether</b> is the only way to unlock one useful feature of the game: manipulating your currency's value by creating and destroying it at will. With no currency peg, you may at any time add new units of your currency to your reserves, or remove it from the game. This powerful control on supply and demand gives you the acute ability to manage your currency's value. But it can be its own downside, as you may unintentionally introduce inflation or deflation, crippling your economy in the process.
+		
+		<p>If you remove your peg and then re-peg your currency to another unit at a later time, gain a volatility token. If you change your peg in any round where you also changed your peg in the previous round, you immediately gain a volatility token.
 
-		<h4>Global Events</h4>
+		<h4 id="globalevents">Global Events</h4>
 		
 		<p>Global event cards are drawn once at the beginning of each round, and stay in effect for the rest of the round. Global event cards describe conditions that take effect this round, a common goal for all players to meet, and consequences if the goal is or is not met by the final phase of the round.
 
-		<h4>Gold</h4>
+		<h4 id="gold">Gold</h4>
 
-		<p>Gold works a little differently than commodities or currency. <b>It is mined</b>, not created, meaning its supply is more stable. <b>Gold counts as a universal currency</b>, meaning every player may use their supply of gold to pay for their purchases. <b>Players can also peg their currency to the value of gold.</b> <b>The banker with the most gold in reserves gets to go first</b> whenever order of play matters. At the end of the game, <b>gold is the unit of currency used to determine the value of your reserve holdings</b>. 
+		<p>Gold works a little differently than commodities or currency. <b>It is <a href="#mining">mined</a></b>, not created by players through <a href="#production">production</a>. <b>Gold counts as a universal <a href="#currency">currency</a></b>, meaning every player may use their supply of gold to pay for their purchases. <b>Players can also <a href="#exchangerate">peg their currency to the value of gold</a>.</b> <b>The banker with the most gold in reserves gets to go first</b> whenever <a href="#orderofplay">order of play</a> matters. At the end of the game, <b>gold is the unit of currency used to determine the value of your reserve holdings</b>. 
 		
-		<h4>Laws</h4>
+		<h4 id="laws">Laws</h4>
 		
-		<p>Law cards, under normal circumstances, are drawn once by players during rounds 1, 3 and 6 and remain in play for the remainder of the game. They describe conditions, representing laws passed in your country, to which you must adhere. If you fail to comply with one or more of your nation's laws in a given round, gain a volatility token.
+		<p>Law cards, under normal circumstances, are drawn once by players during rounds 1, 3, 6 and 10, and remain in play for the remainder of the game. They describe conditions, representing laws passed in your country, to which you must adhere. If you fail to comply with one or more of your nation's laws in a given round, gain a <a href="#volatilitytokens">volatility token</a>.
 
-		<h4 id="market">Global Market</h4>
+		<h4 id="market">Market</h4>
 
-		<p>TODO
+		<p>The global marketplace is the area where <a href="#production">produced</a> <a href="#commodities">commodities</a> are sent to be bought and sold. Players can also use the market to exchange <a href="#gold">gold</a> and <a href="#currency">currency</a> during <a href="#trading">trading</a>.
 
-		<h4>Mining</h4>
+		<p>The amount of gold, currency and commodities in the marketplace determine the <a href="#value">value</a> of those units.
+
+		<h4 id="mining">Mining</h4>
 
 		<p>At the beginning of each round, every nation mines gold by rolling a d6, and placing that number of new units of gold into their reserves.
 
-		<h4>Native currency</h4>
+		<h4 id="orderofplay">Order of play</h4>
 
-		<p>Native currency refers to the currency your nation uses to make purchases. Each nation has its own standard currency it can use for this purpose. <b>Any nation can also use gold to make purchases.</b> Other currencies and even commodities may also be used as native currency under special circumstances (when stated).
-
-		<h4>Order of play</h4>
-
-		<p>When relevant (e.g., during the trading phase), <b>players take turns in order based on who has the most gold in reserves</b>.. Ties are broken by rolling dice.
+		<p>When relevant (e.g., during the <a href="#trading">trading phase</a>), <b>players take turns in order based on who has the most <a href="#gold">gold</a> in <a href="reserves">reserves</a></b>. Ties are broken by rolling dice.
 
 		<h4 id="production">Production</h4>
 		
-		<p>During the production phase of each round, players may produce commodities by paying an amount equal to 1/2 the relative market value of that commodity.
+		<p>During the production phase each round, players may produce <a href="#commodities">commodities</a> by paying an amount equal to 1/2 the <a href="value">relative market value</a> of that commodity.
 			
-		<p>Nations may produce commodities all at once, or follow the standard order of play, as agreed upon by the group. All nations set their commodities aside until the trading round before placing them in the market. Players may also choose to hide the number and type of commodities produced from other players until the trading phase.
-		<p>Production requirements state that each nation must produce at least one of all three commodities (grain, oil and tech) to maintain their nation's low unemployment rate. If they fail to do so, they gain a volatility token later in the round."
+		<p>Nations may produce commodities all at once, or follow the standard <a href="#orderofplay">order of play</a>, as agreed upon by the group. All commodities produced are placed into that players <a href="#reserves">reserves</a> until the <a href="#trading">trading</a> phase, when they may sell them on the <a href="#market">market</a>.
 
-		<h4>Production Cost</h4>
+		<p><a href="#productionrequirement">Production requirements</a> state that each nation must produce at least one of all three commodities (grain, oil and tech) to maintain their nation's low unemployment rate. If they fail to do so, they gain a <a href="#volatilitytoken">volatility token</a> later in the round."
 
-		<p>The cost to produce any commodity is equal to <b>half the commodity's value on the open market</b>.
+		<h4 id="productionrequirement">Production Requirement</a></h4>
 
-		<h4>Production Requirement</h4>
-
-		<p>Each round during the production phase, your population must be put to work producing at least one of each type of commodity per law in effect. You must be able to pay all production costs to meet this requirement.
+		<p>Each round during the <a href="#production">production</a> phase, your population must be put to work producing at least one of each type of commodity per <a href="#laws">law</a> in effect. You must be able to pay all production costs (1/2 the <a href="#value">market value</a> for each unit produced) to meet this requirement.
 
 		<h4 id="reservebank">Reserve bank</h4>
 		
-		<p>A nation's central reserve bank is where all gold, commodities and currencies belonging to the nation are kept.
+		<p>A nation's central reserve bank is where all <a href="#gold">gold</a>, <a href="#commodities">commodities</a> and <a href="#currency">currencies</a> belonging to the nation are kept.
 			
-		<p>The amount of gold held by players in their reserves determines the play order. The player whose nation has the most gold gets to go first whenever the order of play matters.<p>Bankers use gold and native currency in their reserves to make purchases in the market. When they do, they determine the relative value of their purchase and place that amount of gold or native currency in the market from their reserves.<p>At the end of the game, players count up the value of all gold, commodities and currency in their reserve, relative to gold (that is, the amount of gold in the market is the numerator in the value formula). If a player has the most valuable reserves, without having three or greater volatility tokens, that player wins the game.
+		<p>The amount of gold held by players in their reserves determines the <a href="#orderofplay">play order</a>. The player whose nation has the most gold gets to go first whenever the order of play matters.
+		
+		<p>Players use gold and their native currency in reserves to make purchases in the <a href="#market">market</a>. When they do, they determine the <a href="#value">relative value</a> of their purchase and pay the according player that amount of gold or native currency from their reserves.
+		
+		<p>At the end of the game, players count up the value of all gold, commodities and currency in their reserve, relative to gold (that is, the amount of gold in the market is the numerator in the <a href="#value">value formula</a>). If a player has the most valuable reserves, without having three or greater <a href=#volatilitytokens">volatility tokens</a>, that player wins the game.
 
 		<h4>Rewards and penalties</h4>
 
-		<p>If during a given round you complied with both your nation's production and consumption requirements, and its laws, you may add one gold to your reserves and remove one volatility token. Otherwise, gain a volatility token.
+		<p>If during a given round you complied with both your nation's <a href="#productionrequirement">production</a> and <a href="#consumptionrequirement">consumption requirements</a>, and its <a href="#laws">laws</a>, you may add one <a href="#gold">gold</a> to your <a href="#reserves">reserves</a> and remove one <a href="#volatilitytokens">volatility token</a>. Otherwise, gain a volatility token.
 
-		<h4>Resolving the global event</h4>
-
-		<p>The final action in a given round, determine whether the players were successful in achieving the goal stated on the card. Enact the "Success" or "Failure" outcomes as appropriate.
-
-		<h4>Trading</h4>
+		<h4 id="trading">Trading</h4>
 	
 		<p>During the trading phase, players take turns doing one of the following actions:
 
