@@ -10,3 +10,6 @@ a:hover {
 	color: #3ccd47; 
 }
 
+img {
+	max-width: 100%;
+}
