@@ -1,0 +1,226 @@
+<html>
+<head>
+ <title>Economicon</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- Customized style for this page -->
+<link rel="stylesheet" href="assets/callout.css">
+<link rel="stylesheet" href="assets/style.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- It's responsive! -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- MathJax (back, back, back again) -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="jumbotron">
+			<h1><b>Economicon</b></h1>
+			<p>Rules Document v. 0.2 **IN PROGRESS**
+			<br>Updated 2019-12-18</p>
+		</div>
+
+		<h2>Welcome to Economicon!</h2>
+		<p>When playing Economicon, you assume the role of the mightiest of all bureaucrats: the central banker. Your goal is to build a stable economy and a prosperous nation.		
+
+		<div class="bd-callout bd-callout-info">
+			<h4>Thank you (a disclaimer)</h4>
+			<p><b>This game is still being play tested!</b> If you play it, please share your feedback using the <a href="https://forms.gle/iVnNveo85b9exVC37" target="_blank">play tester evaluation form</a>.</p>
+			<p>Seriously, thank you for taking the time to play test this game... and apologies if you find it boring, frustrating or even unplayable at this early stage.</p>
+		</div>
+
+		<h2>The basic idea</h2>
+
+		<p><b>Economicon is a resource trading game based on supply and demand</b>.  When fewer resources are available, those resources become more valuable. 
+
+		<p>Any time you buy, sell or trade in Economicon, the cost of a unit changes, according to the <a href="#value">value formula</a>. By strategically buying up resources (or, inversely, flooding the market with them), you can raise or lower the value of those resources in a way that affects every player's purchasing power, and the value of the resources they already own.
+
+		<p>Meanwhile, you and your fellow players are trying to accomplish goals both public and private. Accomplishing these goals earn you achievements that you will tally up at the end of the game to determine the winner. Failing in these objectives can result in <a href="#volatility">volatility</a>, which can count against your total achievements at the end of the game.
+
+		<p>The player with the most achievements at the end of the game is the winner.</p>
+
+		<h2>Setting up the game beforehand</h2>
+
+		<p>TODO: select a player (advantages/disadvantages for each)</p>
+
+		<p>Each player sets up their reserve bank in front of them.
+		<p>Start with these resources in your reserve bank:
+		<p><ul>
+				<li><b>Gold:</b> 10 units</li>
+				<li><b>Currency (yours):</b> 8 units</li>
+			</ul>
+
+		<p>In the center of the table, set up the marketplace: 
+		<p><ul>
+				<li><b>Gold:</b> 4 units</li>
+				<li><b>Commodities:</b> 4 grain, 2 oil, 1 tech</li>
+				<li><b>Currency:</b> 1 of each</li>
+		</ul>
+
+		<p>Then, each player draws a private objective card. Upon completion of this private objective card, immediately gain an achievement.</p> 
+		<p>Last, shuffle the global objective cards and select five at random. Set them aside without looking at them.</p>
+
+		<h2>Playing the game</h2>
+
+		<p>To begin, flip the first global objective card. Each global objective has a goal to achieve, a number of rounds of trading in which to achieve that goal, and consequences upon success or failure. During a game of Economicon, the players will attempt to complete five global objectives.
+
+		<p>After the first global objective is revealed, trading begins with the player who rolls highest on a d6 (in the event of a tie for highest, the players who tied keep rolling until one rolls higher) and continuing clockwise. During each player's turn, they may do any one of the following:
+			<br><b>Produce:</b> Add any number of a single type of commodity to your reserves. Pay half the market value for that commodity into the market, using either your native currency or gold.
+			<br><b>Sell:</b> Move any number of <a href="#commodities">commodities</a> from your <a href="#reservebank">reserves</a> to the <a href="#market">market</a>.
+			<br><b>Buy:</b> Purchase units of a single commodity available on the market; move them from the top of the stack in the market to your reserves. For each unit you purchase, pay the player who produced it the market value using either your native currency or gold.
+			<br><b>Exchange:</b> Exchange any currency or gold in your reserves for an amount of currency of equal value from the market.
+			<br><b>Mine:</b> Add one unit of gold to your reserves.
+			<br><b>Print:</b> If you have more gold than native currency in reserves, add up to the difference in native currency to your reserves.
+
+		<h2>Definitions</h2>
+
+		<h4 id="commodities">Commodities</h4>
+
+		<p>There are three commodities in Economicon: grain, oil and steel.
+		<p>Players can <a href="#production">produce</a> commodities by paying half their <a href="#value">market value</a>. Once you have produced commodities, you can sell them in the <a href="#market">market</a>, and buy other player's commodities.
+		<p>Keeping commodities in your <a href="#reservebank">reserves</a> is a great way to control the market, build the value of your holdings and ensure that your nation's <a href="#consumptionrequirement">consumption requirements</a> are met.
+			
+		<h4 id="consumptionrequirement">Consumption Requirement</h4>
+
+		<p>Each round immediately following <a href="#trading">trading</a>, the citizens of your nation will consume a number of <a href="#commodities">commodities</a> from your <a href="#reservebank">reserve bank</a> equal to the number of <a href="#laws">laws</a> in effect. When commodities are consumed in this way, discard them from play.
+
+		<h4 id="currency">Currency</h4>
+
+		<p>Like in real life, currency in Economicon is a symbolic token of value used to buy and sell things. Each player has their own currency, which they control the value of by determining its <a href="#exchangerate">exchange rate</a>.
+
+		<p>You can pick another unit of value to "peg" your exchange rate to, be it <a href="#gold">gold</a>, one of the <a href=#commodities">commodities</a> or another player's currency, in which case the value of your currency is equal to the value of that peg. Each of these options has its own advantages and disadvantages--see the <a href="#exchangerate">Exchange Rate</a> section for more information.
+
+		<p>You can also decide not to peg your currency's value to anything, in which case it works just like any other unit of value, in that its value is determined by how much of it is available for trade in the <a href=#market">market</a>. This gives you additional powerful (but dangerous) tool to control the value of your money: you may add new units of your currency to reserves at any time, for free.   
+
+		<h4 id="exchangerate">Exchange Rate</h4>
+		
+		<p>Each turn, you may 'peg' your <a href="#currency">currency</a> to another unit of value by declaring it to have the same value. You can choose <a href="#gold">gold,</a>, a <a href="#commodities">commodity</a>, or another player's currency. Currency doesn't have to pegged to another unit, however. If your currency has no peg, its value is determined by its own scarcity in the market, just like anything else.
+		
+		<p>When you choose another item as your currency peg, you may use that item in addition to your native currency to pay for purchases. Each choice you make about your currency's exchange rate has its own additional advantages and risks:
+
+		<p><b>Pegging to gold</b> makes your currency's value more stable, since gold can only be produced by <a href="#mining">mining</a>. But, since any player can pay for purchases with gold, you gain no advantage over other players using it to pay for purchases.
+
+		<p><b>Pegging to commodities like wheat, oil or tech</b> allows you to spend that commodity from your <a href="#reservebank">reserves</a> as though it were your native currency, giving you more buying power. But the value of commodities can be unpredictable, because other players can <a href="#production">produce</a>, buy and sell commodities at will, causing shortages or surpluses that dramatically affect supply and demand.
+		
+		<p><b>Pegging to another nation's currency</b> gives you the added security of tying your value to another player with a vested interest in maintaining its value and stability, effectively creating a de facto partnership. You also have the benefit of trading directly with that nation: you may buy sell directly with that nation, without trading on the market (although you must still pay <a href="#value">market value</a>). But this subjugates your currency's value to the actions of another player. If they devalue or inflate their currency, deliberately or otherwise, you will indirectly suffer the consequences.
+		
+		<p><b>Removing your currency peg altogether</b> is the only way to unlock one useful feature of the game: manipulating your currency's value by creating and destroying it at will. With no currency peg, you may at any time add new units of your currency to your reserves, or remove it from the game. This powerful control on supply and demand gives you the acute ability to manage your currency's value. But it can be its own downside, as you may unintentionally introduce inflation or deflation, crippling your economy in the process.
+		
+		<p>If you remove your peg and then re-peg your currency to another unit at a later time, gain a volatility token. If you change your peg in any round where you also changed your peg in the previous round, you immediately gain a volatility token.
+
+		<h4 id="globalevents">Global Events</h4>
+		
+		<p>Global event cards are drawn once at the beginning of each round, and stay in effect for the rest of the round. Global event cards describe conditions that take effect this round, a common goal for all players to meet, and consequences if the goal is or is not met by the final phase of the round.
+
+		<h4 id="gold">Gold</h4>
+
+		<p>Gold works a little differently than commodities or currency. <b>It is <a href="#mining">mined</a></b>, not created by players through <a href="#production">production</a>. <b>Gold counts as a universal <a href="#currency">currency</a></b>, meaning every player may use their supply of gold to pay for their purchases. <b>Players can also <a href="#exchangerate">peg their currency to the value of gold</a>.</b> <b>The banker with the most gold in reserves gets to go first</b> whenever <a href="#orderofplay">order of play</a> matters. At the end of the game, <b>gold is the unit of currency used to determine the value of your reserve holdings</b>. 
+		
+		<h4 id="laws">Laws</h4>
+		
+		<p>Law cards, under normal circumstances, are drawn once by players during rounds 1, 3, 6 and 10, and remain in play for the remainder of the game. They describe conditions, representing laws passed in your country, to which you must adhere. If you fail to comply with one or more of your nation's laws in a given round, gain a <a href="#volatilitytokens">volatility token</a>.
+
+		<h4 id="market">Market</h4>
+
+		<p>The global marketplace is the area where <a href="#production">produced</a> <a href="#commodities">commodities</a> are sent to be bought and sold. Players can also use the market to exchange <a href="#gold">gold</a> and <a href="#currency">currency</a> during <a href="#trading">trading</a>.
+
+		<p>The amount of gold, currency and commodities in the marketplace determine the <a href="#value">value</a> of those units.
+
+		<h4 id="mining">Mining</h4>
+
+		<p>At the beginning of each round, every nation mines gold by rolling a d6, and placing that number of new units of gold into their reserves.
+
+		<h4 id="orderofplay">Order of play</h4>
+
+		<p>When relevant (e.g., during the <a href="#trading">trading phase</a>), <b>players take turns in order based on who has the most <a href="#gold">gold</a> in <a href="reserves">reserves</a></b>. Ties are broken by rolling dice.
+
+		<h4 id="production">Production</h4>
+		
+		<p>During the production phase each round, players may produce <a href="#commodities">commodities</a> by paying an amount equal to 1/2 the <a href="value">relative market value</a> of that commodity.
+			
+		<p>Nations may produce commodities all at once, or follow the standard <a href="#orderofplay">order of play</a>, as agreed upon by the group. All commodities produced are placed into that players <a href="#reserves">reserves</a> until the <a href="#trading">trading</a> phase, when they may sell them on the <a href="#market">market</a>.
+
+		<p><a href="#productionrequirement">Production requirements</a> state that each nation must produce at least one of all three commodities (grain, oil and tech) to maintain their nation's low unemployment rate. If they fail to do so, they gain a <a href="#volatilitytoken">volatility token</a> later in the round."
+
+		<h4 id="productionrequirement">Production Requirement</a></h4>
+
+		<p>Each round during the <a href="#production">production</a> phase, your population must be put to work producing at least one of each type of commodity per <a href="#laws">law</a> in effect. You must be able to pay all production costs (1/2 the <a href="#value">market value</a> for each unit produced) to meet this requirement.
+
+		<h4 id="reservebank">Reserve bank</h4>
+		
+		<p>A nation's central reserve bank is where all <a href="#gold">gold</a>, <a href="#commodities">commodities</a> and <a href="#currency">currencies</a> belonging to the nation are kept.
+			
+		<p>The amount of gold held by players in their reserves determines the <a href="#orderofplay">play order</a>. The player whose nation has the most gold gets to go first whenever the order of play matters.
+		
+		<p>Players use gold and their native currency in reserves to make purchases in the <a href="#market">market</a>. When they do, they determine the <a href="#value">relative value</a> of their purchase and pay the according player that amount of gold or native currency from their reserves.
+		
+		<p>At the end of the game, players count up the value of all gold, commodities and currency in their reserve, relative to gold (that is, the amount of gold in the market is the numerator in the <a href="#value">value formula</a>). If a player has the most valuable reserves, without having three or greater <a href=#volatilitytokens">volatility tokens</a>, that player wins the game.
+
+		<h4>Rewards and penalties</h4>
+
+		<p>If during a given round you complied with both your nation's <a href="#productionrequirement">production</a> and <a href="#consumptionrequirement">consumption requirements</a>, and its <a href="#laws">laws</a>, you may add one <a href="#gold">gold</a> to your <a href="#reserves">reserves</a> and remove one <a href="#volatilitytokens">volatility token</a>. Otherwise, gain a volatility token.
+
+		<h4 id="trading">Trading</h4>
+	
+		<p>During the trading phase, players take turns doing one of the following actions:
+
+					<br><b>Sell:</b> Move any number of commodities from your reserves to the market.
+					<br><b>Buy:</b> Purchase any number of a single commodity's available units by moving them from the top of the stack in the market into reserves. Pay each player who produced commodites your puchase their market value.
+					<br><b>Exchange:</b> Exchange foreign currency in your reserves for your native currency (or vice versa). You can also exchange using gold.
+					<br><b>Pass:</b> When all players pass, the trade phase is over.
+		
+
+		<h4>Unit</h4>
+
+		<p>A unit refers to one token of any type of currency, commodity or gold. 
+
+		<h4 id="value">Value</h4>
+		<p>As in real life, the value of a gold, commodities and currency in Economicon is relative, based on supply and demand. The more scarce something is, the more you can expect to pay for it.
+		<p>Using a currency peg is a way to assign a value for your currency other than its inherent scarcity. When using a peg, your currency is exactly as valuable as the unit you have pegged it to.<p>When determining how much a commodity costs in Economicon, use the following formula:
+
+
+		<div class="bd-callout bd-callout-info">
+			<h4>Value formula</h4>
+			<p><img src="value.png"></img>
+		</div>
+
+		<div class="bd-callout bd-callout-info">
+			<h4>Example</h4>
+			<p>Say you have a pile of <a href="#gold">gold</a> burning a hole in your <a href="#reservebank">reserve bank</a>, and you need to buy 2 grain to meet your nation's <a href="#consumptionrequirement">consumption requirement</a> this turn.
+			<p>There are currently <b>5 gold</b> in the market, and <b>7 grain</b>. So the cost for each unit of grain is <b>5/7</b> = roughly .71 gold per unit of grain. <b>Rounding goes to the nearest .25 in Economicon</b>, so <b>each unit of grain cost .75 gold.</b> You pay 1.5 gold from reserves, and the grain is yours! 
+			<p>The player after you had exactly the same idea: they want to spend their gold to buy 2 grain. Now there are <b>5 grain</b> in the market. <b>So when the next player goes to buy 2 grain, each unit will cost 5/5 = 1 unit of gold.</b>
+			<p>The next player will pay more because grain is now scarcer, and therefore more valuable. 
+		</div>
+
+
+		<p>If you're paying with your native currency, and that currency is pegged to the value of another unit, count that unit in the marketplace instead of your currency when using the value formula. 
+
+		<p>Rounding: Always round to the nearest .25. 
+
+		<h4 id="volatilitytokens">Volatility token</h4>
+		<p>There are three situations in which you may earn a volatility token:<p>1. If your nation fails to meet the production or consumption requirement<br>2. If you fail to comply with your nations laws<br>3. Based on your response to global events<p>You can remove one volatility token per round during your upkeep phase if you comply with all requirements and laws. Certain global events can also result in the removal of volatility tokens.
+
+		<h2>Contact and License</h2>
+
+		To contact the author of this document with questions, email <a href="mailto:contact@blake-cooper.com">contact@blake-cooper.com</a>.
+
+		<div class="bd-callout bd-callout-info">
+			<h4>Have you play tested this game?</h4>
+			<p>What did you think? Please take a moment and fill out the <a href="https://forms.gle/iVnNveo85b9exVC37" target="_blank">play tester evaluation form</a>
+		</div>
+
+		<p>This version of the Economicon rules document is licensed under the Open Game License (OGL), which grants "permission to modify, copy, and redistribute" the information here, provided you follow the rules for share-alike and derivative works. Also, if you do modify, copy or redistribute this game, please let me know! Email contact@blake-cooper.com
+	</div>
+</body>
+</html>
