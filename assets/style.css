@@ -15,4 +15,11 @@ img {
 	height: auto;
 }
 
-div.content { width: 80% }
+@media screen and (min-width:1000px) {
+
+	#content { 
+		width: 960px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
