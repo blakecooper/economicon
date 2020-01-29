@@ -24,6 +24,8 @@
   </script>
 </head>
 <body>
+	<div id="content" style="width: 80%; margin-left: auto; margin-right: auto">
+
 	<div class="container-fluid">
 		<div class="jumbotron">
 			<h1><b>Economicon</b></h1>
@@ -91,9 +93,23 @@
 
 		<h2>Playing the game</h2>
         
-        		<div class="bd-callout bd-callout-info">
-			<h4>Value formula</h4>
-            <p>The value of <b>one unit</b> equals:</p>
+        <ol>
+            <li>Draw a <b>global event card</b></li>
+            <li>Beginning with the starting player and moving clockwise, <b>trade</b> for the number of rounds on the global event card (or until otherwise specified). During your turn, take <u>one</u> of the following <b>trade actions</b>:
+        <ul>
+            <li><b>Produce:</b> Pay to add any number of units of a single commodity to your reserves. Pay half the market  value, from your reserves into the markets.</li>
+            <li><b>Sell:</b> Move any number of a single commodity from your reserves into the markets, to be bought by other players.</li>
+            <li><b>Buy:</b> Pay to move any number of a single commodity from the top of its market stack into your reserves. Pay each player who produced them the market value directly.</li>
+            <li><b>Exchange:</b> Trade any number of a single currency (or gold) in your reserves for an amount of currency (or gold) of equal value from the markets.</li>
+            <li><b>Mine:</b> Add two units of gold to your reserves.</li>
+            <li><b>Print:</b> If you have more gold than native currency in reserves, add up to the difference in native currency to your reserves.</li>
+            <li><b>Draw:</b> Draw a new mandate card.</li>
+        </ul>
+        <br>During your turn, you can also claim an achievement from a mandate card. When you do, place the mandate card face-up in your play area.
+            <div class="bd-callout bd-callout-info">
+			<h4>Determining the value of gold, currency and comodities</h4>
+            <p><b>Don't forget:</b> In Economicon, the value of things change based on supply and demand.</p>
+            <p>At any given time, <b>the value of <u>one unit</u> equals:</b></p>
             <p>The number of units in the markets of the type you're trading <b>with</b></p>
             <p><b>-divided by-</b></p>
             <p>The number of the units in the markets of the type you're trading <b>for</b></p>
@@ -101,35 +117,37 @@
 
 		<div class="bd-callout bd-callout-info">
 			<h4>Example</h4>
-			<p>Say you have a pile of <a href="#gold">gold</a> burning a hole in your <a href="#reservebank">reserve bank</a>, and you need to buy 2 grain to meet your nation's <a href="#consumptionrequirement">consumption requirement</a>.
+			<p>Say you have a pile of gold burning a hole in your reserve bank, and you need to buy 2 grain to meet your nation's consumption requirement.
 			<p>There are currently <b>5 gold</b> in the market, and <b>7 grain</b>. So the cost for each unit of grain is <b>5/7</b> = roughly .71 gold per unit of grain. <b>Rounding goes to the nearest .25 in Economicon</b>, so <b>each unit of grain cost .75 gold.</b> You pay 1.5 gold from reserves, and the grain is yours! 
 			<p>The player after you had exactly the same idea: they want to spend their gold to buy 2 grain. Now there are <b>5 grain</b> in the market. <b>So when the next player goes to buy 2 grain, each unit will cost 5/5 = 1 unit of gold.</b>
 			<p>The next player will pay more because grain is now scarcer, and therefore more valuable. 
 		</div>
-
-		<p>To begin, flip the first global event card. Each global event card describes a scenario, conditions for resolving that scenario, a number of rounds of trading in which to resolve the scenario, and consequences upon success or failure. During a game of Economicon, players will respond to five such global events.
-
-		<p id="trading">After the first global event is revealed, trading begins with the player who rolls highest on a d6 (in the event of a tie for highest, the players who tied keep rolling until one rolls higher) and continuing clockwise. During each player's turn, they may do any one of the following:
-			<br><b>Produce:</b> Add any number of a single type of commodity to your reserves. Pay half the market value for that commodity into the market, using either your native currency or gold.
-			<br><b>Sell:</b> Move any number of <a href="#commodities">commodities</a> from your <a href="#reservebank">reserves</a> to the <a href="#market">market</a>.
-			<br><b>Buy:</b> Purchase units of a single commodity available on the market; move them from the top of the stack in the market to your reserves. For each unit you purchase, pay the player who produced it the market value using either your native currency or gold.
-			<br><b>Exchange:</b> Exchange any currency or gold in your reserves for an amount of currency of equal value from the market.
-			<br><b>Mine:</b> Add one unit of gold to your reserves.
-			<br><b>Print:</b> If you have more gold than native currency in reserves, add up to the difference in native currency to your reserves.i
-			<br><b>Draw:</b> Forego other trades in order to draw a new achievement card. If you do, gain one volatility point.
-		</p>
-
-		<p>Players may claim achievements from achievement cards at any time during trading.</p>
-
-		<p>Trading continues for the number of rounds indicated on the global event. Once that number of rounds has elapsed, pause to resolve the effects on the global event card. Then flip the next global event card. Each player draws a new achievement card and satisfies their consumption requirement, if able (if not, gain a volatility point). Then trading begins again.</p>
-		
-		<p>After five global events are resolved, each player counts up their achievements, adding any <a href="#achievements">bonus achievements</a>, and subtracting any volatility points. The player with the highest total is the winner.</p>
-
-		<p>In the event of a tie, the player among those who tied with the most gold in reserves is the winner. If two or more tied players have the same amount of gold, the tied player with the most valuable total reserve holdings (relative to gold) is the winner.</p>
+            </li>
+            <li><b>Resolve the global event</b> by declaring it a success or failure and taking the card's corresponding action.</li>
+            <li>Pay your nation's <b>consumption requirement</b>. Discard one of each commodity in your reserves for every unclaimed mandate card you hold. If you cannot pay your nation's consumption requirement, gain a <b>volatility point.</b></li>
+        <li>Draw a new mandate card for your nation.</li>
+        <li>Repeat steps 1 - 4 until five global events have been resolved.</li>
+        </ol>
 		
 		<h2>Winning the game</h2>
 
-		<p>This section under construction!</p>
+        <p><b>The winner of Economicon is the player with the most victory points</b> after five global events have been resolved.</p>
+
+        <p>To determine how many victory points you have:</p>
+        
+        <ol>
+            <li><b>Add your achievements</b> from claimed mandates and responses to global events.</li>
+            <li><b>Add victory points for each bonus achievement</b> you can claim:</li>
+            <ul>
+                <li><b>Commodities trader (1 point):</b> Hold more total commodities than any other player in reserves</li>
+                <li><b>Forex trader (1 point):</b> Hold more total currency than any other player in reserves</li>
+                <li><b>Most stable economy (2 points):</b> Have 0 volatility points (multiple players may earn)</li>
+                <li><b>Full faith and confidence (5 points):</b> Hold more gold than any other player in reserves</li>
+                <li><b>Most valuable economy (7 points):</b> Hold most valuable total reserves (relative to the value of gold)</li>
+            </ul>
+            <li><b>Subtract your volatility points.</b></li>
+            <li><b>Subtract every unclaimed mandate you hold.</b></li>
+        </ol>
         
         <h2>Contact and License</h2>
 
@@ -142,5 +160,6 @@
 
 		<p>This version of the Economicon rules document is licensed under the Open Game License (OGL), which grants "permission to modify, copy, and redistribute" the information here, provided you follow the rules for share-alike and derivative works. Also, if you do modify, copy or redistribute this game, please let me know! Email <a href="mailto:contact@blake-cooper.com">contact@blake-cooper.com</a>
 	</div>
+</div>
 </body>
 </html>
