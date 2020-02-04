@@ -24,9 +24,9 @@
 	<div class="container-fluid">
 		<div class="jumbotron">
 			<h1><b>Economicon</b></h1>
-            <h4>A game of macroeconomics and trading</h4>
-			<p>Rules Document v. 0.2
-			<br>Updated 2020-01-28</p>
+            <h4>A game of trading and macroeconomics</h4>
+			<p>Rules Document v. 0.3
+			<br>Updated 2020-02-04</p>
 		</div>
 		
 		<h2>Welcome to Economicon!</h2>
@@ -35,18 +35,16 @@
 
 		<div class="bd-callout bd-callout-info">
 			<h4>Updates</h4>
-			<p><b>2020-01-28:</b> Now you can <a href="economicon-reference-0_2.pdf" target="_blank">download the new, handy Economicon rules reference card (v. 0.2)</a>.</p>
+			<p><b>2020-02-03:</b> Another play test, another update! <a href="economicon-reference-0_3.pdf" target="_blank">Download the latest Economicon rules reference card (v. 0.3) here</a>.</p>
 		</div>
 
 		<h2>The basic idea</h2>
 
-        <p><b>Economicon is a resource trading game</b> where the value of things change based on supply and demand.</p>
+        <p><b>Economicon is a trading game</b> where the value of things change based on supply and demand.</p>
 
-        <p>You and your fellow players will each be trying to claim personal and public achievements through trading. Every trade you make has the potential to affect the value of your (and your fellow players') personal holdings, which might include gold, commodities (like grain, steel, oil and tech) and currency (both yours and that of other players).</p>
+        <p>You and your fellow players will each be trying to complete personal and public objectives through trading. But be careful: every trade you make has the potential to affect the value of your (and your fellow players') personal holdings, which might include gold, commodities (like grain, oil and tech) and currency (both yours and that of other players).</p>
         
-        <p>Every achievement you claim counts toward your victory points. But certain actions, like having unclaimed mandates or failing to respond to certain global events, will earn you volatility points, which count against you.</p> 
-        
-        <p>At the end of the game, the player with the most victory points wins.</p>
+        <p>The more objectives you complete, and the more valuable your economy, the more victory points you earn. But certain actions, like failing to meet the consumption demands of your citizens or responding poorly to certain global events, will earn you volatility points. At the end of the game, the player with the most victory points wins, <b>as long as they don't have three or more volatility points.</b></p>
 
 		<div class="bd-callout bd-callout-info">
 			<h4>Thank you (a disclaimer)</h4>
@@ -57,28 +55,17 @@
 		<h2>Setting up the game</h2>
         
         <ol>
-            <li>Choose your nation:
-                <ul>
-                    <li><b>Blue</b> produces <u>one extra tech</u> for free, but <u>cannot produce grain</u></li>
-                    <li><b>Green</b> produces <u>one extra grain</u> for free, but <u>cannot produce oil</u></li>
-                    <li><b>White</b> produces <u>one extra steel</u> for free, but <u>cannot produce tech</u></li>
-                    <li><b>Red</b> produces <u>one extra oil</u> for free, but <u>cannot produce steel</u></li>
-                </ul>
-            </li>
+            <li>Choose your nation and place the corresponding reserve bank in front of you.</li>
             <li>Set up your reserve bank:
                 <ul>
                     <li><b>Gold:</b> 10 units</li>
                     <li><b>Native currency:</b> 8 units            
                 </ul>
             </li>
-            <li>Set up the markets:
+            <li>Set up the market:
             <ul>
                 <li><b>Gold:</b> 4 units</li>
-                <li><b>Grain:</b> 4 units (randomly chosen)</li>
-                <li><b>Steel:</b> 4 units (randomly chosen)</li>
-                <li><b>Oil:</b> 2 units (randomly chosen)</li>
-                <li><b>Tech:</b> 1 unit (randomly chosen)</li>
-                <li><b>Currency:</b> 1 unit from each player</li>
+                <li><b>Others:</b> 1 unit each
             </ul>
             </li>
             <li>Draw two <b>mandate cards</b> for your nation
@@ -91,66 +78,68 @@
         
         <ol>
             <li>Draw a <b>global event card</b></li>
-            <li>Beginning with the starting player and moving clockwise, <b>trade</b> for the number of rounds on the global event card (or until otherwise specified). During your turn, take <u>one</u> of the following <b>trade actions</b>:
-        
+            <li>Beginning with the starting player and moving clockwise, each player takes their turn. This continues for the number of rounds on the global event card.
+            <br>During your turn, take <u>two</u> actions:
         <ul>
-            <li><b>Produce:</b> Pay to add any number of units of a single commodity to your reserves. Pay half the market  value, from your reserves into the markets.</li>
-            <li><b>Sell:</b> Move any number of a single commodity from your reserves into the markets, to be bought by other players.</li>
-            <li><b>Buy:</b> Pay to move any number of a single commodity from the top of its market stack into your reserves. Pay each player who produced them the market value directly.</li>
-            <li><b>Exchange:</b> Trade any number of a single currency (or gold) in your reserves for an amount of currency (or gold) of equal value from the markets.</li>
-            <li><b>Mine:</b> Add two units of gold to your reserves.</li>
-            <li><b>Print:</b> If you have more gold than native currency in reserves, add up to the difference in native currency to your reserves.</li>
-            <li><b>Draw:</b> Draw a new mandate card.</li>
+            <li>First, take a <b>genearate</b> action:
+            <ul>
+                <li><b>Produce:</b> Pay either gold or your native currency to add any one commodity to your reserves. Use the value counts, but gain one additional commodity.</li>
+                <li><b>Mine gold:</b> Add two units of gold to your reserves.</li>
+                <li><b>Print currency:</b> If you have more gold than your native currency in reserves, add up to the difference in native currency to your reserves. Then, pay one gold.</li>
+                <li><b>Draw a new mandate card.</b> Then, discard one mandate card.</li>
+            </ul></li>
+            <li>Second, you may take another generate action, or <b>trade</b>:
+            <ul>
+                <li><b>Trade:</b> exchange units of one type in your reserves for units of another type from the market.
+                <ul>
+                    <li><b>Commodities</b> can only be traded for <b>gold</b> or <b>your native currency</b>.</li>
+                    <li><b>Currency</b> (excluding your native currency) can only be traded for another currency (including gold).</li>
+                </ul>
+            </ul>
+            </li>
         </ul>
         
-        <br>During your turn, you can also claim an achievement from a mandate card. When you do, place the mandate card face-up in your play area.
+        <br>At any time during your turn, when you complete a mandate, you can either <b>claim a victory point</b> or <b>remove a volatility point</b>. 
         
         <div class="bd-callout bd-callout-info">
-			<h4>Determining the value of gold, currency and comodities</h4>
-            <p><b>Don't forget:</b> In Economicon, the value of things change based on supply and demand.</p>
-            <p>At any given time, <b>the value of <u>one unit</u> equals:</b></p>
-            <p>The number of units in the markets of the type you're trading <b>with</b></p>
-            <p><b>-divided by-</b></p>
-            <p>The number of the units in the markets of the type you're trading <b>for</b></p>
+			<h4>Using the value count</h4>
+            <p>Everything in the market has a <b>value</b> count, a number that determines how many units of that type should be traded for units of another type.</p>
+
+            <p><b>Value counts increase by 1 for every 5 units</b> available in the market of its corresponding type (gold, currency or one of the commodities).</p>
+
+            <p>Example: if there are 21 gold in the market, the value count of gold is 4. If the number of gold units goes up to 25, the value count becomes 5; if it dips below 20, gold's value count becomes 3.</p>
 		</div>
 
 		<div class="bd-callout bd-callout-info">
 			<h4>Example</h4>
             
-			<p>Say you have a pile of gold burning a hole in your reserve bank, and you need to buy 2 grain to meet your nation's consumption requirement.
-			
-            <p>There are currently <b>5 gold</b> in the market, and <b>7 grain</b>. So the cost for each unit of grain is <b>5/7</b> = roughly .71 gold per unit of grain. <b>Rounding goes to the nearest .25 in Economicon</b>, so <b>each unit of grain cost .75 gold.</b> You pay 1.5 gold from reserves, and the grain is yours! 
-			
-            <p>The player after you had exactly the same idea: they want to spend their gold to buy 2 grain. Now there are <b>5 grain</b> in the market. <b>So when the next player goes to buy 2 grain, each unit will cost 5/5 = 1 unit of gold.</b>
-			<p>The next player will pay more because grain is now scarcer, and therefore more valuable. 
+            <p>Any time you <b>produce</b> a commodity or execute a <b>trade</b> of any kind, you will compare value counts to determine how much of one thing to pay or trade for another.</p>
+
+            <p>Example: <b>When producing a commodity</b>, first pay an amount of either gold or your native currency equal to its value count. Then, add an amount of any one commodity to your reserves equal to that commodity's value count, plus one additional unit (this is a benefit unique to production, unrelated to the value count).</p>
+
+            <p>Example: <b>When trading</b>, you will always get an amount of something equal to its value count by exchanging an amount of something else equal to its value count.</p>
 		</div>
                 
             </li>
-            <li><b>Resolve the global event</b> by declaring it a success or failure and taking the card's corresponding action.</li>
-            <li>Pay your nation's <b>consumption requirement</b>. Discard one of each commodity in your reserves for every unclaimed mandate card you hold. If you cannot pay your nation's consumption requirement, gain a <b>volatility point.</b></li>
-        <li>Draw a new mandate card for your nation.</li>
+            <li><b>Resolve the global event</b> by declaring it a success or failure, then taking the corresponding action.</li>
+            <li>Resolve your nation's <b>consumption requirement</b>. Discard one of each commodity in your reserves for every uncompleted mandate card you hold. If you cannot pay your nation's consumption requirement, gain a <b>volatility point</b>.</li>
+        <li>Draw a new mandate card.</li>
         <li>Repeat steps 1 - 4 until five global events have been resolved.</li>
         </ol>
 		
 		<h2>Winning the game</h2>
 
-        <p><b>The winner of Economicon is the player with the most victory points</b> after five global events have been resolved.</p>
+        <p>The winner of Economicon is the player with the most victory points after five global events have been resolved <b>without having three or greater volatility points.</b> Anyone with three or greater volatility points <u>cannot</u> win the game.</p>
 
-        <p>To determine how many victory points you have:</p>
+        <p>To determine how many victory points you have, <b>add your victory points</b> from claimed mandates and responses to global events. Then, <b>add additional victory points</b> for each bonus achievement you can claim:</p>
         
-        <ol>
-            <li><b>Add your achievements</b> from claimed mandates and responses to global events.</li>
-            <li><b>Add victory points for each bonus achievement</b> you can claim:</li>
-            <ul>
-                <li><b>Commodities trader (1 point):</b> Hold more total commodities than any other player in reserves</li>
-                <li><b>Forex trader (1 point):</b> Hold more total currency than any other player in reserves</li>
-                <li><b>Most stable economy (2 points):</b> Have 0 volatility points (multiple players may earn)</li>
-                <li><b>Full faith and confidence (5 points):</b> Hold more gold than any other player in reserves</li>
-                <li><b>Most valuable economy (7 points):</b> Hold most valuable total reserves (relative to the value of gold)</li>
-            </ul>
-            <li><b>Subtract your volatility points.</b></li>
-            <li><b>Subtract every unclaimed mandate you hold.</b></li>
-        </ol>
+        <ul>
+            <li><b>Commodities trader (1 point):</b> Hold more total commodities than any other player in reserves</li>
+            <li><b>Forex trader (1 point):</b> Hold more total currency than any other player in reserves</li>
+            <li><b>Most stable economy (2 points):</b> Have 0 volatility points (multiple players may earn)</li>
+            <li><b>Full faith and confidence (5 points):</b> Hold more gold than any other player in reserves</li>
+            <li><b>Most valuable economy (5 points):</b> Hold most valuable total reserves (relative to the value of gold)</li>
+        </ul>
         
         <h2>Contact and License</h2>
 
@@ -161,7 +150,7 @@
 			
             <p>Did you play test this game? What did you think? Please take a moment and fill out the <a href="https://forms.gle/iVnNveo85b9exVC37" target="_blank">play tester evaluation form</a>.</p>
             
-            <p>Special thanks to everyone who play tested this game so far: James Bogold, David Constantino, Jared Courier, Andrea Cruz and David Youhess.</p>
+            <p>Thank you!</p>
 		</div>
 
         <p>This version of the Economicon rules document is licensed under the Open Game License (OGL), which grants "permission to modify, copy, and redistribute" the information here, provided you follow the rules for share-alike and derivative works. Also, if you do modify, copy or redistribute this game, please let me know! Email <a href="mailto:contact@blake-cooper.com">contact@blake-cooper.com</a></p>
