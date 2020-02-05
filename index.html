@@ -24,7 +24,7 @@
 	<div class="container-fluid">
 		<div class="jumbotron">
 			<h1><b>Economicon</b></h1>
-            <h4>A game of trading and macroeconomics</h4>
+            <h4>A game of macroeconomics and trading</h4>
 			<p>Rules Document v. 0.3
 			<br>Updated 2020-02-04</p>
 		</div>
@@ -45,12 +45,6 @@
         <p>You and your fellow players will each be trying to complete personal and public objectives through trading. But be careful: every trade you make has the potential to affect the value of your (and your fellow players') personal holdings, which might include gold, commodities (like grain, oil and tech) and currency (both yours and that of other players).</p>
         
         <p>The more objectives you complete, and the more valuable your economy, the more victory points you earn. But certain actions, like failing to meet the consumption demands of your citizens or responding poorly to certain global events, will earn you volatility points. At the end of the game, the player with the most victory points wins, <b>as long as they don't have three or more volatility points.</b></p>
-
-		<div class="bd-callout bd-callout-info">
-			<h4>Thank you (a disclaimer)</h4>
-			<p><b>This game is still being play tested!</b> If you play it, please share your feedback using the <a href="https://forms.gle/iVnNveo85b9exVC37" target="_blank">play tester evaluation form</a>.</p>
-			<p>Seriously, thank you for taking the time to play test this game... and apologies if you find it boring, frustrating or even unplayable at this early stage.</p>
-		</div>
         
 		<h2>Setting up the game</h2>
         
@@ -83,14 +77,14 @@
         <ul>
             <li>First, take a <b>genearate</b> action:
             <ul>
-                <li><b>Produce:</b> Pay either gold or your native currency to add any one commodity to your reserves. Use the value counts, but gain one additional commodity.</li>
+                <li><b>Produce:</b> Pay either gold or your native currency to add an equivalent amount (see <a href="#valuecounts">"Using value counts"</a>) of any one commodity to your reserves. For every number of commodites you produce equal to its value count, gain one additional commodity.</li>
                 <li><b>Mine gold:</b> Add two units of gold to your reserves.</li>
                 <li><b>Print currency:</b> If you have more gold than your native currency in reserves, add up to the difference in native currency to your reserves. Then, pay one gold.</li>
                 <li><b>Draw a new mandate card.</b> Then, discard one mandate card.</li>
             </ul></li>
             <li>Second, you may take another generate action, or <b>trade</b>:
             <ul>
-                <li><b>Trade:</b> exchange units of one type in your reserves for units of another type from the market.
+                <li><b>Trade:</b> exchange units of one type in your reserves for an equivalent amount (see <a href="#valuecounts">"Using the value counts"</a>) of another type from the market.
                 <ul>
                     <li><b>Commodities</b> can only be traded for <b>gold</b> or <b>your native currency</b>.</li>
                     <li><b>Currency</b> (excluding your native currency) can only be traded for another currency (including gold).</li>
@@ -100,25 +94,6 @@
         </ul>
         
         <br>At any time during your turn, when you complete a mandate, you can either <b>claim a victory point</b> or <b>remove a volatility point</b>. 
-        
-        <div class="bd-callout bd-callout-info">
-			<h4>Using the value count</h4>
-            <p>Everything in the market has a <b>value</b> count, a number that determines how many units of that type should be traded for units of another type.</p>
-
-            <p><b>Value counts increase by 1 for every 5 units</b> available in the market of its corresponding type (gold, currency or one of the commodities).</p>
-
-            <p>Example: if there are 21 gold in the market, the value count of gold is 4. If the number of gold units goes up to 25, the value count becomes 5; if it dips below 20, gold's value count becomes 3.</p>
-		</div>
-
-		<div class="bd-callout bd-callout-info">
-			<h4>Example</h4>
-            
-            <p>Any time you <b>produce</b> a commodity or execute a <b>trade</b> of any kind, you will compare value counts to determine how much of one thing to pay or trade for another.</p>
-
-            <p>Example: <b>When producing a commodity</b>, first pay an amount of either gold or your native currency equal to its value count. Then, add an amount of any one commodity to your reserves equal to that commodity's value count, plus one additional unit (this is a benefit unique to production, unrelated to the value count).</p>
-
-            <p>Example: <b>When trading</b>, you will always get an amount of something equal to its value count by exchanging an amount of something else equal to its value count.</p>
-		</div>
                 
             </li>
             <li><b>Resolve the global event</b> by declaring it a success or failure, then taking the corresponding action.</li>
@@ -126,10 +101,29 @@
         <li>Draw a new mandate card.</li>
         <li>Repeat steps 1 - 4 until five global events have been resolved.</li>
         </ol>
-		
+        
+        <h2 id="valuecounts">Using value counts</h2>
+            <p>Everything in the market has a <b>value</b> count, a number that determines how many units of that type should be traded for units of another type.</p>
+
+            <p>Value counts start at 1 (for anything with fewer than 5 units available in the market), and increase by 1 every time the number of units in the market hits a multiple of five (so 5 units have a value count of 2, 10 units have a value count of 3 and so on).</p>
+
+		<div class="bd-callout bd-callout-info">
+			<h4>Example: using value counts</h4>
+            
+            <p>Any time you <b>produce</b> a commodity or execute a <b>trade</b> of any kind, you will compare value counts to determine how much of one thing to pay or trade for another.</p>
+
+            <p><b>When producing a commodity</b>, first pay an amount of either gold or your native currency equal to its value count. Then, add an amount of any one commodity to your reserves equal to that commodity's value count, plus one additional unit (this is a benefit unique to production, unrelated to the value count).</p>
+
+            <p><b>When trading</b>, you will always get an amount of something equal to its value count by exchanging an amount of something else equal to its value count.</p>
+		</div>
 		<h2>Winning the game</h2>
 
-        <p>The winner of Economicon is the player with the most victory points after five global events have been resolved <b>without having three or greater volatility points.</b> Anyone with three or greater volatility points <u>cannot</u> win the game.</p>
+        <p>The winner of Economicon is the player with the most victory points after five global events have been resolved <b>without having three or greater volatility points.</b></p>
+        
+        <div class="bd-callout bd-callout-danger">
+			<h4>Any player with three or greater volatility points <u>cannot</u> win the game!</h4>
+			<p>You can remove volatility points by completing mandates or succeeding in global events.</p>
+		</div>
 
         <p>To determine how many victory points you have, <b>add your victory points</b> from claimed mandates and responses to global events. Then, <b>add additional victory points</b> for each bonus achievement you can claim:</p>
         
@@ -147,10 +141,8 @@
 
 		<div class="bd-callout bd-callout-info">
 			<h4>Play testers are the real heroes</h4>
-			
-            <p>Did you play test this game? What did you think? Please take a moment and fill out the <a href="https://forms.gle/iVnNveo85b9exVC37" target="_blank">play tester evaluation form</a>.</p>
-            
-            <p>Thank you!</p>
+			<p><b>This game is still being play tested!</b> If you play it, please share your feedback using the <a href="https://forms.gle/iVnNveo85b9exVC37" target="_blank">play tester evaluation form</a>.</p>
+			<p>Seriously, thank you for taking the time to play test this game... and apologies if you find it boring, frustrating or even unplayable at this early stage.</p>
 		</div>
 
         <p>This version of the Economicon rules document is licensed under the Open Game License (OGL), which grants "permission to modify, copy, and redistribute" the information here, provided you follow the rules for share-alike and derivative works. Also, if you do modify, copy or redistribute this game, please let me know! Email <a href="mailto:contact@blake-cooper.com">contact@blake-cooper.com</a></p>
