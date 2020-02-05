@@ -26,6 +26,10 @@ h2 {
     
 }
 
+.indoc {
+    color: #084f09;
+}
+
 @media screen and (min-width:1000px) {
 
 	#content { 
