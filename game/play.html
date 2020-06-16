@@ -1,0 +1,228 @@
+<html>
+<head>
+<title>Economicon v. 0.3</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- Customized style for this page -->
+<link rel="stylesheet" href="assets/callout.css">
+<link rel="stylesheet" href="assets/style.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- It's responsive! -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Game script -->
+<script src="js/constants.js" defer></script>
+<script src="js/data_global_events.js" defer></script>
+<script src="js/data_mandates.js" defer></script>
+<script src="js/market.js" defer></script>
+<script src="js/bank.js" defer></script>
+<script src="js/cards.js" defer></script>
+<script src="js/player.js" defer></script>
+<script src="js/game.js" defer></script>
+<script src="js/ui.js" defer></script>
+</head>
+<body>
+	<div id="content">
+
+		<div class="container-fluid">
+		
+		<div class="navbar">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					Economicon
+				</div>
+				<p class="navbar-text" id="currentPhase">Select "New Game" to begin</p>
+				<button class="btn btn-default navbar-btn" onclick="play()">New Game</button>
+			</div>
+		</div>
+
+		<div class="container player top">
+			<div class="mandates top">
+			</div>
+
+			<div id="playerName"></div>
+
+			<div class="container bank top">
+				<div class="row">
+					<div class="col-sm-4">gold</div>
+					<div class="col-sm-4" id="topCommodity1"></div>
+					<div class="col-sm-4" id="topCommodity2"></div>
+					<div class="col-sm-4" id="topCommodity3"></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4" id="topGoldValues"></div>
+					<div class="col-sm-4" id="topCommodity1Values"></div>
+					<div class="col-sm-4" id="topCommodity2Values"></div>
+					<div class="col-sm-4" id="topCommodity3Values"></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4" id="topCurrency1"></div>
+					<div class="col-sm-4" id="topCurrency2"></div>
+					<div class="col-sm-4" id="topCurrency3"></div>
+					<div class="col-sm-4" id="topCurrency4"></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4" id="topCurrency1Values"></div>
+					<div class="col-sm-4" id="topCurrency2Values"></div>
+					<div class="col-sm-4" id="topCurrency3Values"></div>
+					<div class="col-sm-4" id="topCurrency4Values"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container player left">
+			<div class="mandates left">
+			</div>
+
+			<div id="playerName"></div>
+
+			<div class="container bank left">
+				<div class="row">
+					<div class="col-sm-4">gold</div>
+					<div class="col-sm-4" id="leftCommodity1"></div>
+					<div class="col-sm-4" id="leftCommodity2"></div>
+					<div class="col-sm-4" id="leftCommodity3"></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4" id="leftGoldValues"></div>
+					<div class="col-sm-4" id="leftCommodity1Values"></div>
+					<div class="col-sm-4" id="leftCommodity2Values"></div>
+					<div class="col-sm-4" id="leftCommodity3Values"></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4" id="leftCurrency1"></div>
+					<div class="col-sm-4" id="leftCurrency2"></div>
+					<div class="col-sm-4" id="leftCurrency3"></div>
+					<div class="col-sm-4" id="leftCurrency4"></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4" id="leftCurrency1Values"></div>
+					<div class="col-sm-4" id="leftCurrency2Values"></div>
+					<div class="col-sm-4" id="leftCurrency3Values"></div>
+					<div class="col-sm-4" id="leftCurrency4Values"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container player right">
+			<div class="mandates right">
+			</div>
+
+			<div id="playerName"></div>
+
+			<div class="container bank right">
+				<div class="row">
+					<div class="col-sm-4">gold</div>
+					<div class="col-sm-4" id="rightCommodity1"></div>
+					<div class="col-sm-4" id="rightCommodity2"></div>
+					<div class="col-sm-4" id="rightCommodity3"></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4" id="rightGoldValues"></div>
+					<div class="col-sm-4" id="rightCommodity1Values"></div>
+					<div class="col-sm-4" id="rightCommodity2Values"></div>
+					<div class="col-sm-4" id="rightCommodity3Values"></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4" id="rightCurrency1"></div>
+					<div class="col-sm-4" id="rightCurrency2"></div>
+					<div class="col-sm-4" id="rightCurrency3"></div>
+					<div class="col-sm-4" id="rightCurrency4"></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4" id="rightCurrency1Values"></div>
+					<div class="col-sm-4" id="rightCurrency2Values"></div>
+					<div class="col-sm-4" id="rightCurrency3Values"></div>
+					<div class="col-sm-4" id="rightCurrency4Values"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container player bottom">
+			<div class="mandates bottom">
+			</div>
+
+			<div id="playerName"></div>
+
+			<div class="container bank bottom">
+				<div class="row">
+					<div class="col-sm-4">gold</div>
+					<div class="col-sm-4" id="bottomCommodity1"></div>
+					<div class="col-sm-4" id="bottomCommodity2"></div>
+					<div class="col-sm-4" id="bottomCommodity3"></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4" id="bottomGoldValues"></div>
+					<div class="col-sm-4" id="bottomCommodity1Values"></div>
+					<div class="col-sm-4" id="bottomCommodity2Values"></div>
+					<div class="col-sm-4" id="bottomCommodity3Values"></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4" id="bottomCurrency1"></div>
+					<div class="col-sm-4" id="bottomCurrency2"></div>
+					<div class="col-sm-4" id="bottomCurrency3"></div>
+					<div class="col-sm-4" id="bottomCurrency4"></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4" id="bottomCurrency1Values"></div>
+					<div class="col-sm-4" id="bottomCurrency2Values"></div>
+					<div class="col-sm-4" id="bottomCurrency3Values"></div>
+					<div class="col-sm-4" id="bottomCurrency4Values"></div>
+				</div>
+			</div>
+
+			<div class="container turn">
+				<p>Generate:</p>
+				<button type="button" class="btn disabled" id="produce">Produce</button>
+				<button type="button" class="btn disabled" id="mine">Mine</button>
+				<button type="button" class="btn disabled" id="print">Print</button>
+				<button type="button" class="btn disabled" id="draw">Draw</button>
+				<p>Trade:</p>	
+				<button type="button" class="btn disabled" id="tradeCommodities">Commodities</button>
+				<button type="button" class="btn disabled" id="tradeCurrency">Currency</button>
+			</div>
+		</div>
+
+		<div class="container market">
+			<div class="row">
+				<div class="col-sm-4">gold</div>
+				<div class="col-sm-4" id="commodity1"></div>
+				<div class="col-sm-4" id="commodity2"></div>
+				<div class="col-sm-4" id="commodity3"></div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4" id="goldValues"></div>
+				<div class="col-sm-4" id="commodity1Values"></div>
+				<div class="col-sm-4" id="commodity2Values"></div>
+				<div class="col-sm-4" id="commodity3Values"></div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4" id="currency1"></div>
+				<div class="col-sm-4" id="currency2"></div>
+				<div class="col-sm-4" id="currency3"></div>
+				<div class="col-sm-4" id="currency4"></div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4" id="currency1Values"></div>
+				<div class="col-sm-4" id="currency2Values"></div>
+				<div class="col-sm-4" id="currency3Values"></div>
+				<div class="col-sm-4" id="currency4Values"></div>
+			</div>
+		</div>
+
+		<div class="global-event">
+		</div>
+
+		<div class="container advance">
+			<button type="button" class="btn disabled" id="advance">Next</button>
+		</div>
+	</div>
+</body>
+</html>

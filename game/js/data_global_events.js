@@ -1,4 +1,4 @@
 
-const DATA_MANDATES = [
+const DATA_GLOBAL_EVENTS = [
 		["","",function() {}]
 	];

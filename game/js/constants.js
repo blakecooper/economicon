@@ -42,7 +42,7 @@ const RANDOM = {
 		"France",
 		"Italy",
 		"Greece",
-		"Germany
+		"Germany",
 	],
 	"CURRENCY": [
 		"Loon",
@@ -64,9 +64,9 @@ const RANDOM = {
 		"Tulips",
 		"Limestone"
 	],
-	"GET:" function(noun) {
-		return this.noun[Math.random(this.noun.size())];
-	};
+	"GET": function(noun) {
+		return this.noun[Math.random(this.noun.length)];
+	},
 };
 
 const NAME = 0;
