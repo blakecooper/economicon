@@ -65,18 +65,42 @@ const RANDOM = {
 		"Limestone"
 	],
 	"GET": function(noun) {
-		return this.noun[Math.random(this.noun.length)];
+		if (noun === NATION) {
+			return RANDOM.NATION[Math.floor((Math.random()*RANDOM.NATION.length-1))];
+		} else if (noun === CURRENCY) {
+			return RANDOM.CURRENCY[Math.floor((Math.random()*RANDOM.CURRENCY.length))];
+		} else {	
+			return RANDOM.COMMODITY[Math.floor((Math.random()*RANDOM.COMMODITY.length))];
+		};
+	
 	},
 };
+
+const NATION = 0;
+const CURRENCY = 1;
+const COMMODITY = 2;
 
 const NAME = 0;
 const TEXT = 1;
 const SATISFIED = 2;
 const OUTCOME = 3;
+const TURNS_LEFT = 4;
 
 const MANDATE = 0;
 const GLOBAL_EVENT = 1;
 
 const DRAW = 0;
-const TURN = 1;
-const RESOLVE = 2;
+const ACTION1 = 1;
+const ACTION2 = 2;
+const RESOLVE = 3;
+
+const PRODUCE = 0;
+const MINE = 1;
+const PRINT = 2;
+const DRAWMANDATE = 3;
+const TRADECOMMODITIES = 4;
+const TRADECURRENCY = 5;
+
+function $(element) {
+	return document.getElementById(element);
+};

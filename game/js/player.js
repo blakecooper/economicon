@@ -12,8 +12,8 @@ function initPlayers(numberPlayers, mandatesDeck) {
 
 	for (let i = 0; i < numberPlayers; i++) {
 		let player = new Player(
-			RANDOM.GET("NATION"),
-			RANDOM.GET("CURRENCY"),
+			RANDOM.GET(NATION),
+			RANDOM.GET(CURRENCY),
 		);
 
 	 	for (let j = 0; j < STARTING_MANDATES; j++) {

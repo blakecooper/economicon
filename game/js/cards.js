@@ -3,6 +3,7 @@ function Card(name, text, satisfied, outcome) {
 	this.text = text;
 	this.satisfied = satisfied;
 	this.outcome = outcome;
+	this.turnsLeft = -1;
 };
 
 function initCards(type) {
@@ -22,11 +23,15 @@ function initCards(type) {
 				data[i][SATISFIED],
 				data[i][OUTCOME]
 			);
+
+			if (type === GLOBAL_EVENT) {
+				card.turnsLeft = data[i][TURNS_LEFT];
+			};
 			cards.push(card);
 		};
 	return cards;
 };
 
 function drawCard(cards) {
-	return cards[Math.random(cards.length)];
+	return cards[Math.floor(Math.random() * cards.length)];
 };
