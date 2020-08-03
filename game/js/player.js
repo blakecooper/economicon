@@ -9,6 +9,9 @@ function Player(name, nativeCurrency) {
 
 function initPlayers(numberPlayers, mandatesDeck) {
 	let players = [];
+	
+	let nationNames = [];
+	let currencyNames = [];
 
 	for (let i = 0; i < numberPlayers; i++) {
 		let player = new Player(
@@ -16,13 +19,21 @@ function initPlayers(numberPlayers, mandatesDeck) {
 			RANDOM.GET(CURRENCY),
 		);
 
-	 	for (let j = 0; j < STARTING_MANDATES; j++) {
-			player.mandates.push(drawCard(mandatesDeck));
-		};
+		if (unitAlreadyExists(player.name, nationNames) || unitAlreadyExists(player.nativeCurrency, currencyNames)) {
+			i--;
+		} else {
 
-		player.bank = initBank(i);
+			nationNames.push(player.name);
+			currencyNames.push(player.nativeCurrency);
+	 	
+			for (let j = 0; j < STARTING_MANDATES; j++) {
+				player.mandates.push(drawCard(mandatesDeck));
+			};
 
-		players.push(player);
+			player.bank = initBank(i);
+
+			players.push(player);
+		};	
 	};
 
 	return players;

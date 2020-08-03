@@ -54,19 +54,13 @@ const RANDOM = {
 		"Credit"
 	],
 	"COMMODITY": [
+		"Grain",
 		"Oil",
-		"Steel",
-		"Corn",
-		"Wheat",
-		"Laptops",
-		"Smartphones",
-		"Natural Gas",
-		"Tulips",
-		"Limestone"
+		"Technology",
 	],
 	"GET": function(noun) {
 		if (noun === NATION) {
-			return RANDOM.NATION[Math.floor((Math.random()*RANDOM.NATION.length-1))];
+			return RANDOM.NATION[Math.floor((Math.random()*RANDOM.NATION.length))];
 		} else if (noun === CURRENCY) {
 			return RANDOM.CURRENCY[Math.floor((Math.random()*RANDOM.CURRENCY.length))];
 		} else {	
