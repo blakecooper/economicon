@@ -77,8 +77,9 @@ const COMMODITY = 2;
 const NAME = 0;
 const TEXT = 1;
 const SATISFIED = 2;
-const OUTCOME = 3;
-const TURNS_LEFT = 4;
+const POSITIVE = 3;
+const NEGATIVE = 4;
+const TURNS_LEFT = 5;
 
 const MANDATE = 0;
 const GLOBAL_EVENT = 1;

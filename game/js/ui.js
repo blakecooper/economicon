@@ -21,8 +21,7 @@ function UI() {
 	this.mine = $("mine");
 	this.print = $("print");
 	this.draw = $("draw");
-	this.tradeCommodities = $("tradeCommodities");
-	this.tradeCurrency = $("tradeCurrency");
+	this.trade = $("trade");
 
 	this.advanceButton = $("advanceButton");
 
@@ -146,10 +145,10 @@ function UI() {
 		this.bottomCurrency2.innerHTML = game.players[(getIndexOfCurrentPlayer(game) + 1) % NUMBER_PLAYERS].nativeCurrency;
 		this.bottomCurrency3.innerHTML = game.players[(getIndexOfCurrentPlayer(game) + 2) % NUMBER_PLAYERS].nativeCurrency;
 		this.bottomCurrency4.innerHTML = game.players[(getIndexOfCurrentPlayer(game) + 3) % NUMBER_PLAYERS].nativeCurrency;
-		this.bottomCurrency1Values.innerHTML = game.player.bank.currency[0];
-		this.bottomCurrency2Values.innerHTML = game.player.bank.currency[1];
-		this.bottomCurrency3Values.innerHTML = game.player.bank.currency[2];
-		this.bottomCurrency4Values.innerHTML = game.player.bank.currency[3];
+		this.bottomCurrency1Values.innerHTML = game.player.bank.currency[getIndexOfCurrentPlayer(game)];
+		this.bottomCurrency2Values.innerHTML = game.player.bank.currency[(getIndexOfCurrentPlayer(game) + 1) % NUMBER_PLAYERS];
+		this.bottomCurrency3Values.innerHTML = game.player.bank.currency[(getIndexOfCurrentPlayer(game) + 2) % NUMBER_PLAYERS];
+		this.bottomCurrency4Values.innerHTML = game.player.bank.currency[(getIndexOfCurrentPlayer(game) + 3) % NUMBER_PLAYERS];
 	};
 	
 	this.updateOtherPlayers = function(game) {
@@ -170,10 +169,10 @@ function UI() {
 			this["Commodity1Values" + i].innerHTML = game.players[(playerIndex + i) % NUMBER_PLAYERS].bank.commodities[0];
 			this["Commodity2Values" + i].innerHTML = game.players[(playerIndex + i) % NUMBER_PLAYERS].bank.commodities[1];
 			this["Commodity3Values" + i].innerHTML = game.players[(playerIndex + i) % NUMBER_PLAYERS].bank.commodities[2];
-			this["Currency1Values" + i].innerHTML = game.players[(playerIndex + i) % NUMBER_PLAYERS].bank.currency[0];
-			this["Currency2Values" + i].innerHTML = game.players[playerIndex].bank.currency[1];
-			this["Currency3Values" + i].innerHTML = game.players[playerIndex].bank.currency[2];
-			this["Currency4Values" + i].innerHTML = game.players[playerIndex].bank.currency[3];
+			this["Currency1Values" + i].innerHTML = game.players[playerIndex].bank.currency[playerIndex];
+			this["Currency2Values" + i].innerHTML = game.players[playerIndex].bank.currency[(playerIndex + 1) % NUMBER_PLAYERS];
+			this["Currency3Values" + i].innerHTML = game.players[playerIndex].bank.currency[(playerIndex + 2) % NUMBER_PLAYERS];
+			this["Currency4Values" + i].innerHTML = game.players[playerIndex].bank.currency[(playerIndex + 3) % NUMBER_PLAYERS];
 		
 			playerIndex = getNextPlayer(game);
 		};
@@ -215,6 +214,8 @@ function UI() {
 	this.resetModal = function(modal) {
 		if (modal === PRODUCE) {
 			$("produceActionButton").disabled = true;
+			$("produceNumber").innerHTML = "0";
+			$("produceCost").innerHTML = "0";
 		};
 	};
 
@@ -254,58 +255,97 @@ function UI() {
 		};
 	};
 
-	this.updateTradeModal = function(game, tradeType) {
+	this.updateTradeModal = function(game) {
 		this.resetTradeNumber();
 	
 		$("warningTrade").style.display = "none";
 		this.removeAllChildren($("tradeWithSelect"));
 		this.removeAllChildren($("tradeForSelect"));
 
-		if (tradeType === COMMODITY) {
-			for (let i = 0; i < NUMBER_COMMODITIES; i++) {
-				let option = document.createElement("OPTION");
-				let optionName = document.createTextNode(game.commodityNames[i]);
-				option.appendChild(optionName);
-				$("tradeWithSelect").appendChild(option);
-			};
+		let goldOption = document.createElement("OPTION");
+		let goldOptionName = document.createTextNode("Gold");
+		goldOption.appendChild(goldOptionName);
+		$("tradeWithSelect").appendChild(goldOption);
+		
+		for (let i = 0; i < NUMBER_PLAYERS; i++) {
+			let option = document.createElement("OPTION");
+			let optionName = document.createTextNode(game.players[(getIndexOfCurrentPlayer(game) + i) % 4].nativeCurrency);
+			option.appendChild(optionName);
+			$("tradeWithSelect").appendChild(option);
+		};
 
-			let goldOption = document.createElement("OPTION");
-			let goldOptionName = document.createTextNode("Gold");
-			goldOption.appendChild(goldOptionName);
-			$("tradeForSelect").appendChild(goldOption);
+		for (let i = 0; i < NUMBER_COMMODITIES; i++) {
+			let option = document.createElement("OPTION");
+			let optionName = document.createTextNode(game.commodityNames[i]);
+			option.appendChild(optionName);
+			$("tradeWithSelect").appendChild(option);
+		};
 
-			let currencyOption = document.createElement("OPTION");
-			let currencyOptionName = document.createTextNode(game.player.nativeCurrency);
-			currencyOption.appendChild(currencyOptionName);
-			$("tradeForSelect").appendChild(currencyOption);
+		let goldOption2 = document.createElement("OPTION");
+		let goldOptionName2 = document.createTextNode("Gold");
+		goldOption2.appendChild(goldOptionName2);
+		$("tradeForSelect").appendChild(goldOption2);
+		
+		for (let i = 0; i < NUMBER_PLAYERS; i++) {
+			let option = document.createElement("OPTION");
+			let optionName = document.createTextNode(game.players[(getIndexOfCurrentPlayer(game) + i) % 4].nativeCurrency);
+			option.appendChild(optionName);
+			$("tradeForSelect").appendChild(option);
+		};
 
-		} else if (tradeType === CURRENCY) {
+		for (let i = 0; i < NUMBER_COMMODITIES; i++) {
+			let option = document.createElement("OPTION");
+			let optionName = document.createTextNode(game.commodityNames[i]);
+			option.appendChild(optionName);
+			$("tradeForSelect").appendChild(option);
+		};
+	};
+	
+	this.updateTradeWithFromFor = function(game) {
+		this.resetTradeNumber();
 
-			let goldOption = document.createElement("OPTION");
-			let goldOptionName = document.createTextNode("Gold");
-			goldOption.appendChild(goldOptionName);
-			$("tradeWithSelect").appendChild(goldOption);
+		if (game.getTypeOfResourceFromName($("tradeWithSelect").value) === COMMODITY) {
+			this.removeAllChildren($("tradeForSelect"));
 
 			let goldOption2 = document.createElement("OPTION");
 			let goldOptionName2 = document.createTextNode("Gold");
 			goldOption2.appendChild(goldOptionName2);
 			$("tradeForSelect").appendChild(goldOption2);
-
-			for (let i = 0; i < NUMBER_PLAYERS; i++) {
+		
+			let nativeCurrencyOption = document.createElement("OPTION");
+			let nativeCurrencyOptionName = document.createTextNode(game.player.nativeCurrency);
+			nativeCurrencyOption.appendChild(nativeCurrencyOptionName);
+			$("tradeForSelect").appendChild(nativeCurrencyOption);
+			
+			for (let i = 0; i < NUMBER_COMMODITIES; i++) {
 				let option = document.createElement("OPTION");
-				let optionName = document.createTextNode(game.players[i].nativeCurrency);
+				let optionName = document.createTextNode(game.commodityNames[i]);
 				option.appendChild(optionName);
-				$("tradeWithSelect").appendChild(option);
+				$("tradeForSelect").appendChild(option);
+			};
+
+
+		} else if (game.getTypeOfResourceFromName($("tradeWithSelect").value) === CURRENCY) {
+			if ($("tradeWithSelect").value !== game.player.nativeCurrency) {
+				this.removeAllChildren($("tradeForSelect"));
+
+				let goldOption2 = document.createElement("OPTION");
+				let goldOptionName2 = document.createTextNode("Gold");
+				goldOption2.appendChild(goldOptionName2);
+				$("tradeForSelect").appendChild(goldOption2);
 				
-				let option2 = document.createElement("OPTION");
-				let optionName2 = document.createTextNode(game.players[i].nativeCurrency);
-				option2.appendChild(optionName2);
-				$("tradeForSelect").appendChild(option2);
+				for (let i = 0; i < NUMBER_PLAYERS; i++) {
+					let option = document.createElement("OPTION");
+					let optionName = document.createTextNode(game.players[(getIndexOfCurrentPlayer(game) + i) % 4].nativeCurrency);
+					option.appendChild(optionName);
+					$("tradeForSelect").appendChild(option);
+				};
 			};
 		} else {
+			this.updateTradeModal(game);
 		};
 	};
-		
+	
 	this.updateProduceModal = function(game) {
 		this.removeAllChildren(this.produceCommodity);
 
@@ -368,8 +408,8 @@ function UI() {
 		let previous = $(element).innerHTML;
 		let updated = parseInt(previous);
 		
-		if (parseInt(previous) > getValueCount(this.produceCommodity.value)) {
-			for (let i = 0; i < getValueCount(this.produceCommodity.value); i++) {
+		if (parseInt(previous) > getValueCount($("tradeWithSelect").value)) {
+			for (let i = 0; i < getValueCount($("tradeWithSelect").value); i++) {
 				updated--;
 			};
 		
@@ -387,8 +427,8 @@ function UI() {
 		let previous = $(element).innerHTML;
 		let updated = parseInt(previous);
 	
-		for (let i = 0; i < getValueCount(this.produceCommodity.value); i++) {
-				updated++;
+		for (let i = 0; i < getValueCount($("tradeWithSelect").value); i++) {
+			updated++;
 		};
 	
 		$(element).innerHTML = updated;
@@ -410,11 +450,11 @@ function UI() {
 	};
 
 	this.updateProductionCost = function(updated) {
-		$("produceCost").innerHTML = getValueCount($('producePayment').value) * getValueCount(getValueFromInnerHTML($("produceNumber")));
+		$("produceCost").innerHTML = getValueCount($('producePayment').value) * getValueCount(this.getValueFromInnerHTML($("produceNumber")));
 	};
 	
 	this.updateTradeCost = function(updated) {
-		$("numberTradedFor").innerHTML = getValueCount($('tradeForSelect').value) * (getValueCount($("tradeWithSelect").value) * this.getValueFromInnerHTML($("tradeWithNumber")));
+		$("numberTradedFor").innerHTML = getValueCount($('tradeForSelect').value) * (this.getValueFromInnerHTML($("tradeWithNumber"))/getValueCount($("tradeWithSelect").value));
 	};
 	
 	this.removeAllChildren = function(element) {

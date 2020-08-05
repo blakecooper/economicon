@@ -19,12 +19,35 @@ function Game() {
 	//some things needed for undo/tracking/global event resolution
 	this.thisTurn = "";
 
+	this.getIndexOfCommodity = function(commodity) {
+		for (let i = 0; i < this.commodityNames.length; i++) {
+			if (commodity.toUpperCase() === this.commodityNames[i].toUpperCase()) {
+				return i;
+			};
+		};
+		return -1;
+	};
+
+	this.copy = function() {
+		//TODO: OPTIMIZE THIS so, instead of copying everything, we only copy what we need
+		let newCopy = new Game();
+		let key;
+
+		for (key in this) {
+			newCopy[key] = this[key];
+		};
+
+		return newCopy;
+	};
+		
 	this.mine = function() {
 		this.player.bank.gold += 2;
 		ui.postNotice("You mined 2 gold.");
 		this.thisTurn = "MINE";
+		gameStack.push(this.copy());
 		ui.updateCurrentPlayer(game);
 		disableGenerateButtons();
+		disableTradingButtons();
 		enableNextButton();
 	};
 
@@ -43,8 +66,10 @@ function Game() {
 				this.player.gold -= 1;
 				ui.postNotice("You printed " + difference + " " + this.player.nativeCurrency + ".");
 				this.thisTurn = "PRINT";
+		gameStack.push(this.copy());
 				ui.updateCurrentPlayer(game);
 				disableGenerateButtons();
+				disableTradingButtons();
 				enableNextButton();
 			};
 		};
@@ -54,7 +79,8 @@ function Game() {
 		//modal appears that shows new mandate along with existing mandate
 		ui.updateDiscardModal(this);
 		this.thisTurn = "DRAW";
-		//player must discard one
+		gameStack.push(this.copy());
+			//player must discard one
 			//lights up on click
 			//message: "discard this mandate?"
 			//proceed button lights up
@@ -68,11 +94,33 @@ function Game() {
 		};
 		ui.updateCurrentPlayer(game);
 		disableGenerateButtons();
+		disableTradingButtons();
 		enableNextButton();
 	};
 	this.checkGlobalEventAndDisplayResult = function() {
-		//get success/fail condition from global event function
-		
+		if (this.globalEvent.satisfied()) {
+			this.globalEvent.positive();
+		} else {
+			this.globalEvent.negative();
+		};
+	};
+	this.getTypeOfResourceFromName = function(name) {
+		if (name.toUpperCase() === "GOLD") {
+			return "Gold";
+		} else {
+			for (let i = 0; i < NUMBER_COMMODITIES; i++) {
+				if (name.toUpperCase() === this.commodityNames[i].toUpperCase()) {
+					return COMMODITY;
+				};
+			};
+
+			for (let i = 0; i < NUMBER_PLAYERS; i++) {
+				if (name.toUpperCase() === this.players[i].nativeCurrency.toUpperCase()) {
+					return CURRENCY;
+				};
+			};
+		};
+		return -1;
 	};
 };
 
@@ -149,6 +197,7 @@ function getNextPlayer(game) {
 
 function init() {
 	game.turnsRemainingInGlobalObjective--;
+		gameStack.push(game.copy());
 	ui.refresh(game);
 	disableGenerateButtons();
 	disableTradingButtons();
@@ -162,9 +211,11 @@ function advance() {
 			game.turnsRemainingInGlobalObjective--;
 		};
 		game.phase = ACTION1;
-	} else if (game.phase === ACTION2 && game.turnsRemainingInGlobalObjective > 0) {
+	} else if (game.phase === ACTION2 && game.turnsRemainingInGlobalObjective < 1 && (game.player !== game.firstPlayer)) {
 		game.player = game.players[getNextPlayer(game)];
-		game.phase = RESOLVE;
+		if (game.player === game.firstPlayer) {
+			game.phase = RESOLVE;
+		};
 	} else {
 		game.lastTurn = game.phase;
 		game.phase++;
@@ -190,8 +241,7 @@ function enableGenerateButtons() {
 };
 
 function enableTradingButtons() {
-	ui.tradeCommodities.disabled = false;
-	ui.tradeCurrency.disabled = false;
+	ui.trade.disabled = false;
 };
 
 function disableGenerateButtons() {
@@ -202,8 +252,7 @@ function disableGenerateButtons() {
 };
 
 function disableTradingButtons() {
-	ui.tradeCommodities.disabled = true;
-	ui.tradeCurrency.disabled = true;
+	ui.trade.disabled = true;
 };
 
 function turn() {
@@ -393,11 +442,13 @@ function processTrade() {
 	if (tradeProcessed) {
 
 		game.thisTurn = "TRADE " + 
-			getValueFromInnerHTML($("tradeWithNumber")) + " " + 
+			ui.getValueFromInnerHTML($("tradeWithNumber")) + " " + 
 			$("tradeWithSelect").value + " FOR " + 
-			getValueFromInnerHTML($("numberTradedFor")) + " " +
+			ui.getValueFromInnerHTML($("numberTradedFor")) + " " +
 			$("tradeForSelect").value;
 
+		gameStack.push(game.copy());
+		
 		ui.updateCurrentPlayer(game);
 		ui.updateMarket(game);
 
@@ -436,6 +487,8 @@ function processProduction() {
 		game.commodityNames[getIndexOfCommodity(ui.produceCommodity.value)] + " WITH " +
 		cost + " " + ui.producePayment.value;
 
+		gameStack.push(game.copy());
+	
 	ui.updateCurrentPlayer(game);
 	ui.updateMarket(game);
 

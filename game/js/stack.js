@@ -21,4 +21,15 @@ class Stack {
 	isEmpty() {
 		return this.items.length == 0;
 	};
+	
+	copy() {
+		let newCopy = new Stack();
+		let key;
+		
+		for (key of this) {
+			newCopy[key] = this[key];
+		};
+
+		return newCopy;
+	};
 };

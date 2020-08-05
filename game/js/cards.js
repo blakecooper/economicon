@@ -1,8 +1,9 @@
-function Card(name, text, satisfied, outcome) {
+function Card(name, text, satisfied, positive) {
 	this.name = name;
 	this.text = text;
 	this.satisfied = satisfied;
-	this.outcome = outcome;
+	this.positive = positive;
+	this.negative = -1;
 	this.turnsLeft = -1;
 };
 
@@ -21,10 +22,11 @@ function initCards(type) {
 				data[i][NAME],
 				data[i][TEXT],
 				data[i][SATISFIED],
-				data[i][OUTCOME]
+				data[i][POSITIVE]
 			);
 
 			if (type === GLOBAL_EVENT) {
+				card.negative = data[i][NEGATIVE];
 				card.turnsLeft = data[i][TURNS_LEFT];
 			};
 			cards.push(card);

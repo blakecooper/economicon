@@ -226,14 +226,11 @@
 		<p>
 		<div>
 			<div class="container turn">
-				<p>Generate:</p>
 				<button type="button" class="btn" id="produce" data-toggle="modal" data-target="#produceModal" onclick="ui.resetModal(PRODUCE)">Produce</button>
 				<button type="button" class="btn" id="mine" onclick="game.mine()">Mine</button>
 				<button type="button" class="btn" id="print" onclick="game.print()">Print</button>
 				<button type="button" class="btn" id="draw" data-toggle="modal" data-target="#discardMandateModal" onclick="game.draw()">Draw</button>
-				<p>Trade:</p>	
-				<button type="button" class="btn" id="tradeCommodities" data-toggle="modal" data-target="#tradeModal" onclick ="ui.updateTradeModal(game, COMMODITY)">Commodities</button>
-				<button type="button" class="btn" id="tradeCurrency" data-toggle="modal" data-target="#tradeModal" onclick="ui.updateTradeModal(game, CURRENCY)">Currency</button>
+				<button type="button" class="btn" id="trade" data-toggle="modal" data-target="#tradeModal" onclick ="ui.updateTradeModal(game)">Trade</button>
 			</div>
 			<div class="container advance">
 				<button type="button" class="btn" id="advanceButton" onclick="advance()">Next</button>
@@ -246,7 +243,7 @@
 							<h4>Trade</h4>
 							<div class="form-group">
 								<label for="tradeWith">Trade:</label>
-								<select class="form-control" id="tradeWithSelect" onchange="ui.resetTradeNumber()">
+								<select class="form-control" id="tradeWithSelect" onchange="ui.updateTradeWithFromFor(game)">
 								</select>
 								<label for="numberTradedWith">How much?</label>
 								<div id="numberTradedWithQuantity">
