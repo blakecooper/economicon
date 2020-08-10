@@ -22,10 +22,10 @@ function initCards(type) {
 				data[i][NAME],
 				data[i][TEXT],
 				data[i][SATISFIED],
-				data[i][POSITIVE]
 			);
 
 			if (type === GLOBAL_EVENT) {
+				card.positive = data[i][POSITIVE]
 				card.negative = data[i][NEGATIVE];
 				card.turnsLeft = data[i][TURNS_LEFT];
 			};

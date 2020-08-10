@@ -24,9 +24,8 @@ class Stack {
 	
 	copy() {
 		let newCopy = new Stack();
-		let key;
 		
-		for (key of this) {
+		for (let key of this) {
 			newCopy[key] = this[key];
 		};
 

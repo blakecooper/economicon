@@ -308,6 +308,23 @@
 					</div>
 				</div>
 			</div>
+			<div class="modal fade" id="claimMandateModal" role="dialog">
+				<div class="modal-dialog" id="claimMandateModalDialog">
+					<div class="modal-content">
+						<div class="modal-body">
+							<h4>You satisfied mandates!</h4>
+							<div class="radio" id="mandateRadioButtons">
+									<label><input type="radio">Test</label>
+							</div>
+							
+							<button type="button" class="btn btn-default" data-dismiss="modal" onclick="game.claimAchievement()">Claim achievenemnt</button>
+							<button type="button" class="btn btn-success" id="mandateRemoveVolatilityButton" onclick="game.removeVolatility()" data-dismiss="modal">Remove Volatility</button>
+							<div class="alert alert-danger" id="warningDraw" style="display:none;">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 	</div>
 </body>
 </html>

@@ -466,6 +466,30 @@ function UI() {
 	this.postNotice = function(newNotice) {
 		this.notice.innerHTML = newNotice;
 	};
+
+	this.updateMandatesModal = function(game, mandates) {
+		if (game.player.volatility < 1) {
+			$("mandateRemoveVolatilityButton").disabled = true;
+		};
+
+		this.removeAllChildren($("mandateRadioButtons"));
+
+		for (let i = 0; i < mandates.length; i++) {
+			let mandateLabel = document.createElement("LABEL");
+			let mandateInput = document.createElement("INPUT");
+
+			mandateInput.type = "radio";
+			mandateInput.name = "mandateRadios";
+			mandateInput.id = "mandateRadio" + i;
+
+			mandateLabel.appendChild(mandateInput);
+	
+			mandateLabel.innerHTML += game.player.mandates[i].name + ": " + game.player.mandates[i].text;
+
+			$("mandateRadioButtons").appendChild(mandateLabel);	
+		};
+		
+	};
 };
 
 let ui = new UI();

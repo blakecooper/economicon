@@ -44,6 +44,7 @@ function Game() {
 		this.player.bank.gold += 2;
 		ui.postNotice("You mined 2 gold.");
 		this.thisTurn = "MINE";
+		checkPlayerMandates();
 		gameStack.push(this.copy());
 		ui.updateCurrentPlayer(game);
 		disableGenerateButtons();
@@ -66,7 +67,8 @@ function Game() {
 				this.player.gold -= 1;
 				ui.postNotice("You printed " + difference + " " + this.player.nativeCurrency + ".");
 				this.thisTurn = "PRINT";
-		gameStack.push(this.copy());
+				checkPlayerMandates();
+				gameStack.push(this.copy());
 				ui.updateCurrentPlayer(game);
 				disableGenerateButtons();
 				disableTradingButtons();
@@ -79,6 +81,7 @@ function Game() {
 		//modal appears that shows new mandate along with existing mandate
 		ui.updateDiscardModal(this);
 		this.thisTurn = "DRAW";
+		checkPlayerMandates();
 		gameStack.push(this.copy());
 			//player must discard one
 			//lights up on click
@@ -103,6 +106,7 @@ function Game() {
 		} else {
 			this.globalEvent.negative();
 		};
+		this.numberGlobalEvents++;
 	};
 	this.getTypeOfResourceFromName = function(name) {
 		if (name.toUpperCase() === "GOLD") {
@@ -121,6 +125,16 @@ function Game() {
 			};
 		};
 		return -1;
+	};
+	
+	this.claimAchievement = function() {
+		this.player.victoryPoints++;
+		ui.postNotice(this.player.name + " claimed an achievement!");
+	};
+
+	this.removeVolatility = function() {
+		this.player.volatility--;
+		ui.postNotice(this.player.name + " removed volatility!");
 	};
 };
 
@@ -155,9 +169,9 @@ function getWinner(players) {
 	let winningPlayer;
 
 	for (let i = 0; players.length; i++) {
-		if (players[i].victoryPoints > winningScore) {
+		if (players[i].victoryPoints > winningScore && players[i].volatility < MAX_VOLATILITY) {
 			winningScore = players[i].victoryPoints;
-			winninPlayer = players[i];
+			winningPlayer = players[i];
 		};
 	};
 	return winningPlayer;
@@ -215,6 +229,13 @@ function advance() {
 		game.player = game.players[getNextPlayer(game)];
 		if (game.player === game.firstPlayer) {
 			game.phase = RESOLVE;
+		};
+	} else if (game.phase === RESOLVE) {
+		if (game.numberGlobalEvents < NUMBER_EVENTS_PER_GAME) {
+			game.phase = DRAW;
+		} else {
+			ui.postNotice("The winner is: " + getWinningPlayer());
+			disableNextButton();
 		};
 	} else {
 		game.lastTurn = game.phase;
@@ -275,8 +296,16 @@ function turn() {
 			disableTradingButtons();
 			disableNextButton();
 			game.checkGlobalEventAndDisplayResult();
+			drawNewMandate();
+			enableNextButton();
 		} else {
 		};
+	};
+};
+
+function drawNewMandate() {
+	for (let i = 0; i < NUMBER_PLAYERS; i++) {
+		game.players[i].mandates.push(drawCard(game.mandates));
 	};
 };
 
@@ -447,6 +476,7 @@ function processTrade() {
 			ui.getValueFromInnerHTML($("numberTradedFor")) + " " +
 			$("tradeForSelect").value;
 
+		checkPlayerMandates();
 		gameStack.push(game.copy());
 		
 		ui.updateCurrentPlayer(game);
@@ -487,6 +517,7 @@ function processProduction() {
 		game.commodityNames[getIndexOfCommodity(ui.produceCommodity.value)] + " WITH " +
 		cost + " " + ui.producePayment.value;
 
+		checkPlayerMandates();
 		gameStack.push(game.copy());
 	
 	ui.updateCurrentPlayer(game);
@@ -519,6 +550,29 @@ function getValueCount(item) {
 	return retVal;
 };
 
+function copyGameStack(stack) {
+	let newCopy = new Stack();
+
+	for (let i = 0; i < stack.items.length; i++) {
+		newCopy.items[i] = stack.items[i];
+	};
+
+	return newCopy;
+};
+
+function checkPlayerMandates() {
+	let satisfiedMandates = [];
+	for (let i = 0; i < game.player.mandates.length; i++) {
+		if (game.player.mandates[i].satisfied()) {
+			satisfiedMandates.push(game.player.mandates[i]);
+		};
+	};
+	
+	if (satisfiedMandates.length > 0) {
+		ui.updateMandatesModal(game, satisfiedMandates);
+		jQuery('#claimMandateModal').modal({ show: true });
+	};
+};
 
 let game = new Game();
 let gameStack = new Stack();
