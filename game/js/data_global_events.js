@@ -5,14 +5,14 @@ const DATA_GLOBAL_EVENTS = [
 		"At least 15 oil are available in the market. <br><b>Success:</b> Every player who traded oil earns an achievement. <br><b>Failure:</b> The player with the most oil in reserves gains a volatility point.",
 		
 		function() {
-			if (game.market.commodities[game.getIndexOfCommodity("Oil")] > 14) {
+			if (game.market.commodities[getIndexOfCommodity("Oil")] > 14) {
 				return true;
 			}
 			return false;
 		},
 		
 		function() {
-			let moves = copyGameStack(gameStack);
+			let moves = copyGameStack();
 
 			let playersTraded = [];
 
@@ -35,7 +35,7 @@ const DATA_GLOBAL_EVENTS = [
 			};
 
 			ui.postNotice("You successfully navigated your global event! Players who traded oil gained a victory point!");
-			enableNextButton();
+			ui.enableNextButton();
 		}, 
 		
 		function() {
@@ -43,8 +43,8 @@ const DATA_GLOBAL_EVENTS = [
 			let highestOilHoldings = -1;
 
 			for (let i = 0; i < NUMBER_PLAYERS; i++) {
-				if (game.players[i].bank.commodities[game.getIndexOfCommodity["Oil"]] > highestOilHoldings) {
-					highestOilHoldings = game.players[i].bank.commodities[game.getIndexOfCommodity["Oil"]];
+				if (game.players[i].bank.commodities[getIndexOfCommodity["Oil"]] > highestOilHoldings) {
+					highestOilHoldings = game.players[i].bank.commodities[getIndexOfCommodity["Oil"]];
 				};
 			};
 
@@ -52,7 +52,7 @@ const DATA_GLOBAL_EVENTS = [
 				if (game.players[i].bank.commodities[getIndexOfCommodity["Oil"]] === highestOilHoldings) {
 					game.players[i].volatility++;
 					ui.postNotice("Global event: You failed to reach oil production targets. The player(s) with the most oil in their bank gained volatility!");
-					enableNextButton();
+					ui.enableNextButton();
 				};
 			};
 		},

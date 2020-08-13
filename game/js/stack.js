@@ -22,7 +22,7 @@ class Stack {
 		return this.items.length == 0;
 	};
 	
-	copy() {
+	copyGame() {
 		let newCopy = new Stack();
 		
 		for (let key of this) {

@@ -131,7 +131,7 @@ function UI() {
 		this.currentPlayer.innerHTML = "Player: " + game.player.name;
 	};
 	
-	this.updateCurrentPlayer = function(game) {
+	this.updateCurrentPlayer = () => {
 		this.bottomPlayerName.innerHTML = game.player.name;
 		this.bottomMandates.innerHTML = "Mandates: " + game.player.mandates.length;
 		this.bottomCommodity1.innerHTML = game.commodityNames[0];
@@ -141,18 +141,18 @@ function UI() {
 		this.bottomCommodity1Values.innerHTML = game.player.bank.commodities[0];
 		this.bottomCommodity2Values.innerHTML = game.player.bank.commodities[1];
 		this.bottomCommodity3Values.innerHTML = game.player.bank.commodities[2];
-		this.bottomCurrency1.innerHTML = game.players[getIndexOfCurrentPlayer(game)].nativeCurrency;
-		this.bottomCurrency2.innerHTML = game.players[(getIndexOfCurrentPlayer(game) + 1) % NUMBER_PLAYERS].nativeCurrency;
-		this.bottomCurrency3.innerHTML = game.players[(getIndexOfCurrentPlayer(game) + 2) % NUMBER_PLAYERS].nativeCurrency;
-		this.bottomCurrency4.innerHTML = game.players[(getIndexOfCurrentPlayer(game) + 3) % NUMBER_PLAYERS].nativeCurrency;
-		this.bottomCurrency1Values.innerHTML = game.player.bank.currency[getIndexOfCurrentPlayer(game)];
-		this.bottomCurrency2Values.innerHTML = game.player.bank.currency[(getIndexOfCurrentPlayer(game) + 1) % NUMBER_PLAYERS];
-		this.bottomCurrency3Values.innerHTML = game.player.bank.currency[(getIndexOfCurrentPlayer(game) + 2) % NUMBER_PLAYERS];
-		this.bottomCurrency4Values.innerHTML = game.player.bank.currency[(getIndexOfCurrentPlayer(game) + 3) % NUMBER_PLAYERS];
+		this.bottomCurrency1.innerHTML = game.players[getIndexOfCurrentPlayer()].nativeCurrency;
+		this.bottomCurrency2.innerHTML = game.players[(getIndexOfCurrentPlayer() + 1) % NUMBER_PLAYERS].nativeCurrency;
+		this.bottomCurrency3.innerHTML = game.players[(getIndexOfCurrentPlayer() + 2) % NUMBER_PLAYERS].nativeCurrency;
+		this.bottomCurrency4.innerHTML = game.players[(getIndexOfCurrentPlayer() + 3) % NUMBER_PLAYERS].nativeCurrency;
+		this.bottomCurrency1Values.innerHTML = game.player.bank.currency[getIndexOfCurrentPlayer()];
+		this.bottomCurrency2Values.innerHTML = game.player.bank.currency[(getIndexOfCurrentPlayer() + 1) % NUMBER_PLAYERS];
+		this.bottomCurrency3Values.innerHTML = game.player.bank.currency[(getIndexOfCurrentPlayer() + 2) % NUMBER_PLAYERS];
+		this.bottomCurrency4Values.innerHTML = game.player.bank.currency[(getIndexOfCurrentPlayer() + 3) % NUMBER_PLAYERS];
 	};
 	
 	this.updateOtherPlayers = function(game) {
-		let playerIndex = getNextPlayer(game);
+		let playerIndex = getNextPlayer();
 		for (let i = 0; i < (game.players.length - 1); i++) {
 			this["PlayerName" + i].innerHTML = game.players[(playerIndex + i) % NUMBER_PLAYERS].name;
 	
@@ -174,11 +174,11 @@ function UI() {
 			this["Currency3Values" + i].innerHTML = game.players[playerIndex].bank.currency[(playerIndex + 2) % NUMBER_PLAYERS];
 			this["Currency4Values" + i].innerHTML = game.players[playerIndex].bank.currency[(playerIndex + 3) % NUMBER_PLAYERS];
 		
-			playerIndex = getNextPlayer(game);
+			playerIndex = getNextPlayer();
 		};
 	};
 
-	this.updateMarket = function(game) {
+	this.updateMarket = () => {
 		this.commodity1.innerHTML = game.commodityNames[0];
 		this.commodity2.innerHTML = game.commodityNames[1];
 		this.commodity3.innerHTML = game.commodityNames[2];
@@ -197,12 +197,12 @@ function UI() {
 	};
 	
 	this.updateGlobalEvent = function(game) {	
-		this.globalEventName.innerHTML = game.globalEvent.name;
-		this.globalEventText.innerHTML = game.globalEvent.text;
-		this.globalEventTurnsLeft.innerHTML = game.turnsRemainingInGlobalObjective + " turns remaining";	
+		this.globalEventName.innerHTML = game.currentGlobalEvent.name;
+		this.globalEventText.innerHTML = game.currentGlobalEvent.text;
+		this.globalEventTurnsLeft.innerHTML = game.turnsRemainingInCurrentGlobalEvent + " turns remaining";	
 	};
 
-	this.refresh = function(game) {
+	this.refresh = () => {
 		this.updateBanner(game);
 		this.updateCurrentPlayer(game);
 		this.updateOtherPlayers(game);
@@ -223,7 +223,7 @@ function UI() {
 		return parseInt(object.innerHTML);
 	};
 
-	this.activateDrawButton = function() {
+	this.activateDrawButton = () => {
 		$("drawActionButton").disabled = false;	
 	};
 
@@ -269,7 +269,7 @@ function UI() {
 		
 		for (let i = 0; i < NUMBER_PLAYERS; i++) {
 			let option = document.createElement("OPTION");
-			let optionName = document.createTextNode(game.players[(getIndexOfCurrentPlayer(game) + i) % 4].nativeCurrency);
+			let optionName = document.createTextNode(game.players[(getIndexOfCurrentPlayer() + i) % 4].nativeCurrency);
 			option.appendChild(optionName);
 			$("tradeWithSelect").appendChild(option);
 		};
@@ -288,7 +288,7 @@ function UI() {
 		
 		for (let i = 0; i < NUMBER_PLAYERS; i++) {
 			let option = document.createElement("OPTION");
-			let optionName = document.createTextNode(game.players[(getIndexOfCurrentPlayer(game) + i) % 4].nativeCurrency);
+			let optionName = document.createTextNode(game.players[(getIndexOfCurrentPlayer() + i) % 4].nativeCurrency);
 			option.appendChild(optionName);
 			$("tradeForSelect").appendChild(option);
 		};
@@ -304,7 +304,7 @@ function UI() {
 	this.updateTradeWithFromFor = function(game) {
 		this.resetTradeNumber();
 
-		if (game.getTypeOfResourceFromName($("tradeWithSelect").value) === COMMODITY) {
+		if (getTypeOfResourceFromName($("tradeWithSelect").value) === COMMODITY) {
 			this.removeAllChildren($("tradeForSelect"));
 
 			let goldOption2 = document.createElement("OPTION");
@@ -325,7 +325,7 @@ function UI() {
 			};
 
 
-		} else if (game.getTypeOfResourceFromName($("tradeWithSelect").value) === CURRENCY) {
+		} else if (getTypeOfResourceFromName($("tradeWithSelect").value) === CURRENCY) {
 			if ($("tradeWithSelect").value !== game.player.nativeCurrency) {
 				this.removeAllChildren($("tradeForSelect"));
 
@@ -336,7 +336,7 @@ function UI() {
 				
 				for (let i = 0; i < NUMBER_PLAYERS; i++) {
 					let option = document.createElement("OPTION");
-					let optionName = document.createTextNode(game.players[(getIndexOfCurrentPlayer(game) + i) % 4].nativeCurrency);
+					let optionName = document.createTextNode(game.players[(getIndexOfCurrentPlayer() + i) % 4].nativeCurrency);
 					option.appendChild(optionName);
 					$("tradeForSelect").appendChild(option);
 				};
@@ -435,12 +435,12 @@ function UI() {
 		this.updateTradeCost(updated);
 	};
 
-	this.resetProduceNumber = function() {
+	this.resetProduceNumber = () => {
 		this.produceNumber.innerHTML = "0";
 		this.produceCost.innerHTML = "0";
 	};
 
-	this.resetTradeNumber = function() {
+	this.resetTradeNumber = () => {
 		$("tradeWithNumber").innerHTML = "0";
 		$("numberTradedFor").innerHTML = "0";
 	};
@@ -489,6 +489,50 @@ function UI() {
 			$("mandateRadioButtons").appendChild(mandateLabel);	
 		};
 		
+	};
+
+	this.enableNextButton = () => {
+		this.advanceButton.disabled = false;
+	};
+
+	this.disableNextButton = () => {
+		this.advanceButton.disabled = true;
+	};
+
+	this.enableGenerateButtons = () => {
+		this.produce.disabled = false;
+		this.mine.disabled = false;
+		this.print.disabled = false;
+		this.draw.disabled = false;
+	};
+	
+	this.disableGenerateButtons = () => {
+		this.produce.disabled = true;
+		this.mine.disabled = true;
+		this.print.disabled = true;
+		this.draw.disabled = true;
+	};
+
+	this.enableTradingButton = () => {
+		this.trade.disabled = false;
+	};
+
+	this.disableTradingButton = () => {
+		this.trade.disabled = true;
+	};
+
+	this.updateAfterAction = () => {
+		this.updateCurrentPlayer();
+		this.updateMarket();
+		this.disableGenerateButtons();
+		this.disableTradingButton();
+		this.enableNextButton();		
+	};
+	
+	this.init = () => {
+		this.refresh();
+		this.disableGenerateButtons();
+		this.disableTradingButton();
 	};
 };
 
