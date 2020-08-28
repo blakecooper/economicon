@@ -8,7 +8,7 @@ function Bank() {
 			this.currency.push(PLAYER_STARTING_NUMBER.CURRENCY);
 		};
 
-		for (let i = 0; i < NUMBER_COMMODITIES; i++) {
+		for (let i = 0; i < COMMODITIES.length; i++) {
 			this.commodities.push(PLAYER_STARTING_NUMBER.COMMODITIES);
 		};	
 	};

@@ -46,13 +46,20 @@ function Game() {
 		let nationNames = [];
 		let currencyNames = [];
 
+		let nations = NATIONS;
+
 		for (let i = 0; i < NUMBER_PLAYERS; i++) {
+		
+		let randomNationIndex = Math.floor(Math.random() * NATIONS.length);
+		
 			let player = new Player(
-				RANDOM.GET(NATION),
-				RANDOM.GET(CURRENCY),
+				NATIONS[randomNationIndex][0],
+				NATIONS[randomNationIndex][1],
+				NATIONS[randomNationIndex][2],
+				NATIONS[randomNationIndex][3],
 			);
 
-			if (unitAlreadyExists(player.name, nationNames) || unitAlreadyExists(player.nativeCurrency, currencyNames)) {
+			if (unitAlreadyExists(player.name, nationNames)) {
 				i--;
 			} else {	
 				for (let j = 0; j < STARTING_MANDATES; j++) {
@@ -65,17 +72,15 @@ function Game() {
 			
 				this.players.push(player);
 	
-				nationNames.push(this.player.name);
-				currencyNames.push(this.player.nativeCurrency);
+				nationNames.push(player.name);
+				currencyNames.push(player.currency);
 			};	
 		};
 			
 		this.player = this.players[Math.floor(Math.random() * NUMBER_PLAYERS)];	
 		this.firstPlayer = this.player;
-		
-		for (let i = 0; i < NUMBER_COMMODITIES; i++) {
-			this.commodityNames.push(RANDOM.COMMODITY[i]);
-		};
+	
+		this.commodityNames = COMMODITIES;
 			
 		this.market.init();	
 	};

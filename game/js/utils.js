@@ -152,14 +152,14 @@ function getTypeOfResourceFromName(name) {
 	if (name.toUpperCase() === "GOLD") {
 		return "Gold";
 	} else {
-		for (let i = 0; i < NUMBER_COMMODITIES; i++) {
+		for (let i = 0; i < COMMODITIES.length; i++) {
 			if (name.toUpperCase() === game.commodityNames[i].toUpperCase()) {
 				return COMMODITY;
 			};
 		};
 
 		for (let i = 0; i < NUMBER_PLAYERS; i++) {
-			if (name.toUpperCase() === game.players[i].nativeCurrency.toUpperCase()) {
+			if (name.toUpperCase() === game.players[i].currency.toUpperCase()) {
 				return CURRENCY;
 			};
 		};
@@ -175,12 +175,12 @@ function getValueCount(unit) {
 		retVal = Math.floor(game.market.gold / 5) + 1;	
 	} else {
 		for (let i = 0; i < NUMBER_PLAYERS; i++) {
-			if (unit === game.players[i].nativeCurrency.toUpperCase()) {
+			if (unit === game.players[i].currency.toUpperCase()) {
 				retVal = Math.floor(game.market.currency[i] / 5) + 1;
 			};
 		};
 
-		for (let i = 0; i < NUMBER_COMMODITIES; i++) {
+		for (let i = 0; i < COMMODITIES.length; i++) {
 			if (unit === game.commodityNames[i].toUpperCase()) {
 				retVal = Math.floor(game.market.commodities[i] / 5) + 1;
 			};
@@ -212,7 +212,7 @@ function init() {
 };
 
 function isCommodity(unit) {
-	for (let i = 0; i < NUMBER_COMMODITIES; i++) {
+	for (let i = 0; i < COMMODITIES.length; i++) {
 		if (game.commodityNames[i] === unit) {
 			return true;
 		};
@@ -223,7 +223,7 @@ function isCommodity(unit) {
 
 function isCurrency(unit) {
 	for (let i = 0; i < NUMBER_PLAYERS; i++) {
-		if (game.players[i].nativeCurrency === unit) {
+		if (game.players[i].currency === unit) {
 			return true;
 		};
 	};
@@ -244,18 +244,18 @@ function mine() {
 
 function print() {
 	let gold = game.player.bank.gold;
-	let nativeCurrency = game.player.bank.currency[getIndexOfCurrentPlayer()];
+	let currency = game.player.bank.currency[getIndexOfCurrentPlayer()];
 
 	if (gold < 1) {
 		ui.postNotice("You cannot afford to print (requires 1 gold).");
 	} else {
-		if (gold <= nativeCurrency) {
+		if (gold <=currency) {
 			ui.postNotice("Printing requires more gold than native currency.");
 		} else {
-			let difference = gold - nativeCurrency;
+			let difference = gold - currency;
 			game.player.bank.currency[getIndexOfCurrentPlayer()] += difference;
 			game.player.gold -= 1;
-			ui.postNotice("You printed " + difference + " " + game.player.nativeCurrency + ".");
+			ui.postNotice("You printed " + difference + " " + game.player.currency + ".");
 			game.thisTurn = "PRINT";
 			checkPlayerMandates();
 			gameStack.push(copyGame());
@@ -304,7 +304,7 @@ function produce() {
 function trade() {
 	let tradeProcessed = false;
 	if (isCommodity($('tradeWithSelect').value)) {
-		for (let i = 0; i < NUMBER_COMMODITIES; i++) {
+		for (let i = 0; i < COMMODITIES.length; i++) {
 			if (game.commodityNames[i] === $("tradeWithSelect").value) {
 				if (game.player.bank.commodities[i] >= ui.getValueFromInnerHTML($("tradeWithNumber"))) {
 					if ($("tradeForSelect").value === "Gold") {
@@ -319,7 +319,7 @@ function trade() {
 							$("warningTrade").style.display = "inline";
 						};
 					} else {
-						for (let j = 0; i < NUMBER_COMMODITIES; j++) {
+						for (let j = 0; i < COMMODITIES.length; j++) {
 							if ($("tradeForSelect").value === game.commodityNames[j]) {
 								if (game.market.commodities[j] >= ui.getValueFromInnerHTML($("numberTradedFor"))) {
 									game.player.bank.commodities[i] -= ui.getValueFromInnerHTML($("tradeWithNumber"));
@@ -342,7 +342,7 @@ function trade() {
 		};
 	} else if (isCurrency($('tradeWithSelect').value)) {
 		for (let i = 0; i < NUMBER_PLAYERS; i++) {
-			if (game.players[i].nativeCurrency === $("tradeWithSelect").value) {
+			if (game.players[i].currency === $("tradeWithSelect").value) {
 				if (game.player.bank.currency[i] >= ui.getValueFromInnerHTML($("tradeWithNumber"))) {
 					if ($("tradeForSelect").value === "Gold") {
 						if (game.market.gold >= ui.getValueFromInnerHTML($("numberTradedFor"))) {
@@ -358,7 +358,7 @@ function trade() {
 						};
 					} else {
 						for (let j = 0; j < NUMBER_PLAYERS; j++) {
-							if ($("tradeForSelect").value === game.players[j].nativeCurrency) {
+							if ($("tradeForSelect").value === game.players[j].currency) {
 								if (game.market.currency[j] >= ui.getValueFromInnerHTML($("numberTradedFor"))) {
 									game.player.bank.currency[i] -= ui.getValueFromInnerHTML($("tradeWithNumber"));
 									game.market.currency[i] += ui.getValueFromInnerHTML($("tradeWithNumber"));
@@ -387,7 +387,7 @@ function trade() {
 					$("warningTrade").style.display = "inline";
 				};
 			} else if (isCommodity($("tradeForSelect").value)) {
-				for (let i = 0; i < NUMBER_COMMODITIES; i++) {
+				for (let i = 0; i < COMMODITIES.length; i++) {
 					if ($("tradeForSelect").value === game.commodityNames[i]) {
 						if (game.market.commodities[i] >= ui.getValueFromInnerHTML($("numberTradedFor"))) {
 							game.player.bank.gold -= ui.getValueFromInnerHTML($("tradeWithNumber"));
@@ -404,7 +404,7 @@ function trade() {
 				};
 			} else if (isCurrency($("tradeForSelect").value)) {
 				for (let i = 0; i < NUMBER_PLAYERS; i++) {
-					if ($("tradeForSelect").value === game.players[i].nativeCurrency) {
+					if ($("tradeForSelect").value === game.players[i].currency) {
 						if (game.market.currency[i] >= ui.getValueFromInnerHTML($("numberTradedFor"))) {
 							game.player.bank.gold -= ui.getValueFromInnerHTML($("tradeWithNumber"));
 							game.market.gold += ui.getValueFromInnerHTML($("tradeWithNumber"));
@@ -489,7 +489,7 @@ function updateProductionCost(numberProduced) {
 	ui.produceCost.innerHTML = cost;	
 	if (ui.producePayment.value === "Gold" && cost > game.player.bank.gold) {
 		ui.produceCost.style.color= "red";
-	} else if (ui.producePayment.value === game.player.nativeCurrency && cost > game.player.bank.currency[getIndexOfCurrentPlayer()]) {
+	} else if (ui.producePayment.value === game.player.currency && cost > game.player.bank.currency[getIndexOfCurrentPlayer()]) {
 		ui.produceCost.style.color= "red";
 	} else {
 		ui.produceCost.style.color= "black";	

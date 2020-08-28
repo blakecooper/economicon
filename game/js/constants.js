@@ -25,7 +25,37 @@ const MAX_VOLATILITY = 3;
 
 const NUMBER_STARTING_MANDATES_PER_PLAYER = 2;
 
-const NUMBER_COMMODITIES = 3;
+const COMMODITIES = [
+	"Grain",
+	"Oil",
+	"Technology",
+];
+
+const NATIONS = [
+	["USA","Dollar","$","darkolivegreen"],
+	["Canada","Loon","$","darkred"],
+	["Mexico","Mexican Peso","$","limegreen"],
+	["Argentina","Argentine Peso","$","cornflowerblue"],
+	["UK","Pound","£","maroon"],
+	["Russia","Russian Ruble","₽","midnightblue"],
+	["China","Renminbi","¥","red"],
+	["Japan","Japanese Yen","¥","firebrick"],
+	["Korea","Won","₩","dodgerblue"],
+	["Italy","Lira","L","green"],
+	["Australia","Australian Dollar","$","darkblue"],
+	["Brazil","Real","R$","seagreen"],
+	["Costa Rica","Colon","₡","navy"],
+	["Ethiopia","Birr","Br","gold"],
+	["France","Franc","F","midnightblue"],
+	["Iceland","Krona","kr","darkred"],
+	["India","Rupee","₹","darkorange"],
+	["Iraq","Dinar","د.ع","black"],
+	["Israel","New Shekel","₪","blue"],	
+	["Kenya","Kenyan Shilling","K","black"],
+	["Myanmar","Kyat","K","goldenrod"],
+	["Switzerland","Swiss Franc","Fr","red"],
+	["Turkey","Turkish Lira","₺","firebrick"],
+];
 
 const RANDOM = {
 	"NATION": [
@@ -54,11 +84,6 @@ const RANDOM = {
 		"Pound",
 		"Mark",
 		"Credit"
-	],
-	"COMMODITY": [
-		"Grain",
-		"Oil",
-		"Technology",
 	],
 	"GET": function(noun) {
 		if (noun === NATION) {
@@ -98,6 +123,23 @@ const DRAWMANDATE = 3;
 const TRADECOMMODITIES = 4;
 const TRADECURRENCY = 5;
 
+const GOLD = 0;
+const COMMODITY1 = 1;
+const COMMODITY2 = 2;
+const COMMODITY3 = 3;
+const CURRENCY1 = 4;
+const CURRENCY2 = 5;
+const CURRENCY3 = 6;
+const CURRENCY4 = 7;
+
+const GOLD_COLOR = '#F7CB15';
+const GRAIN_COLOR = '#E3D26F';
+const OIL_COLOR = 'black';
+const TECH_COLOR = 'blue';
+const CURRENCY1_COLOR = 'lightgreen';
+const CURRENCY2_COLOR = 'lightsalmon';
+const CURRENCY3_COLOR = 'lightyellow';
+const CURRENCY4_COLOR = 'lightskyblue';
 function $(element) {
 	return document.getElementById(element);
 };

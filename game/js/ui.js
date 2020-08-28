@@ -5,6 +5,7 @@ function UI() {
 	this.notice = $('notice');
 
 	this.globalEventName = $("globalEventName");
+	this.globalEventNameModal = $("globalEventNameModal");
 	this.globalEventText = $("globalEventText");
 	this.globalEventTurnsLeft = $("globalEventTurnsLeft");	
 	
@@ -41,23 +42,25 @@ function UI() {
 	this.currency3Values = $("currency3Values");
 	this.currency4Values = $("currency4Values");
 	
-	this.bottomPlayerName = $("bottomPlayerName");
-	this.bottomMandates = $("bottomMandates");
-	this.bottomCommodity1 = $("bottomCommodity1");
-	this.bottomCommodity2 = $("bottomCommodity2");
-	this.bottomCommodity3 = $("bottomCommodity3");
-	this.bottomGoldValues = $("bottomGoldValues");
-	this.bottomCommodity1Values = $("bottomCommodity1Values");
-	this.bottomCommodity2Values = $("bottomCommodity2Values");
-	this.bottomCommodity3Values = $("bottomCommodity3Values");
-	this.bottomCurrency1 = $("bottomCurrency1");
-	this.bottomCurrency2 = $("bottomCurrency2");
-	this.bottomCurrency3 = $("bottomCurrency3");
-	this.bottomCurrency4 = $("bottomCurrency4");
-	this.bottomCurrency1Values = $("bottomCurrency1Values");
-	this.bottomCurrency2Values = $("bottomCurrency2Values");
-	this.bottomCurrency3Values = $("bottomCurrency3Values");
-	this.bottomCurrency4Values = $("bottomCurrency4Values");
+	this.currentPlayerName = $("currentPlayerName");
+	this.currentMandates = $("currentMandates");
+	this.currentAchievements = $("currentAchievements");
+	this.currentVolatility = $("currentVolatility");
+	this.currentCommodity1 = $("currentCommodity1");
+	this.currentCommodity2 = $("currentCommodity2");
+	this.currentCommodity3 = $("currentCommodity3");
+	this.currentGoldValues = $("currentGoldValues");
+	this.currentCommodity1Values = $("currentCommodity1Values");
+	this.currentCommodity2Values = $("currentCommodity2Values");
+	this.currentCommodity3Values = $("currentCommodity3Values");
+	this.currentCurrency1 = $("currentCurrency1");
+	this.currentCurrency2 = $("currentCurrency2");
+	this.currentCurrency3 = $("currentCurrency3");
+	this.currentCurrency4 = $("currentCurrency4");
+	this.currentCurrency1Values = $("currentCurrency1Values");
+	this.currentCurrency2Values = $("currentCurrency2Values");
+	this.currentCurrency3Values = $("currentCurrency3Values");
+	this.currentCurrency4Values = $("currentCurrency4Values");
 
 	this.PlayerName0 = $("PlayerName0");
 	this.Mandates0 = $("Mandates0");
@@ -128,52 +131,54 @@ function UI() {
 		} else {};
 
 		this.currentPhase.innerHTML = "Phase: " + phaseName;
-		this.currentPlayer.innerHTML = "Player: " + game.player.name;
 	};
 	
 	this.updateCurrentPlayer = () => {
-		this.bottomPlayerName.innerHTML = game.player.name;
-		this.bottomMandates.innerHTML = "Mandates: " + game.player.mandates.length;
-		this.bottomCommodity1.innerHTML = game.commodityNames[0];
-		this.bottomCommodity2.innerHTML = game.commodityNames[1];
-		this.bottomCommodity3.innerHTML = game.commodityNames[2];
-		this.bottomGoldValues.innerHTML = game.player.bank.gold;
-		this.bottomCommodity1Values.innerHTML = game.player.bank.commodities[0];
-		this.bottomCommodity2Values.innerHTML = game.player.bank.commodities[1];
-		this.bottomCommodity3Values.innerHTML = game.player.bank.commodities[2];
-		this.bottomCurrency1.innerHTML = game.players[getIndexOfCurrentPlayer()].nativeCurrency;
-		this.bottomCurrency2.innerHTML = game.players[(getIndexOfCurrentPlayer() + 1) % NUMBER_PLAYERS].nativeCurrency;
-		this.bottomCurrency3.innerHTML = game.players[(getIndexOfCurrentPlayer() + 2) % NUMBER_PLAYERS].nativeCurrency;
-		this.bottomCurrency4.innerHTML = game.players[(getIndexOfCurrentPlayer() + 3) % NUMBER_PLAYERS].nativeCurrency;
-		this.bottomCurrency1Values.innerHTML = game.player.bank.currency[getIndexOfCurrentPlayer()];
-		this.bottomCurrency2Values.innerHTML = game.player.bank.currency[(getIndexOfCurrentPlayer() + 1) % NUMBER_PLAYERS];
-		this.bottomCurrency3Values.innerHTML = game.player.bank.currency[(getIndexOfCurrentPlayer() + 2) % NUMBER_PLAYERS];
-		this.bottomCurrency4Values.innerHTML = game.player.bank.currency[(getIndexOfCurrentPlayer() + 3) % NUMBER_PLAYERS];
+		$("currentPlayerInfo").style = "background-color: " + game.player.currencyColor;
+		this.currentPlayerName.innerHTML = game.player.name;
+		this.currentPlayerName.style = "color: white";
+		$("currentPlayerCurrencyName").innerHTML = "Currency: the " + game.player.currency + " (" + game.player.currencySymbol + ")";
+		$("currentPlayerCurrencyName").style = "color: white";
+		this.currentMandates.innerHTML = "Mandates: " + game.player.mandates.length;
+		this.currentMandates.style = "color: white";
+		this.currentAchievements.innerHTML = "Achievements: " + game.player.victoryPoints;
+		this.currentAchievements.style = "color: white";
+
+		this.styleVolatility();
+		this.currentVolatility.innerHTML = "Volatility: " + game.player.volatility;
+		
+		this.currentCommodity1.innerHTML = game.commodityNames[0];
+		this.currentCommodity2.innerHTML = game.commodityNames[1];
+		this.currentCommodity3.innerHTML = game.commodityNames[2];
+		this.currentGoldValues.innerHTML = game.player.bank.gold;
+		this.currentCommodity1Values.innerHTML = game.player.bank.commodities[0];
+		this.currentCommodity2Values.innerHTML = game.player.bank.commodities[1];
+		this.currentCommodity3Values.innerHTML = game.player.bank.commodities[2];
+		this.currentCurrency1.innerHTML = game.players[getIndexOfCurrentPlayer()].currency;
+		this.currentCurrency2.innerHTML = game.players[(getIndexOfCurrentPlayer() + 1) % NUMBER_PLAYERS].currency;
+		this.currentCurrency3.innerHTML = game.players[(getIndexOfCurrentPlayer() + 2) % NUMBER_PLAYERS].currency;
+		this.currentCurrency4.innerHTML = game.players[(getIndexOfCurrentPlayer() + 3) % NUMBER_PLAYERS].currency;
+		this.currentCurrency1Values.innerHTML = game.player.bank.currency[getIndexOfCurrentPlayer()];
+		this.currentCurrency2Values.innerHTML = game.player.bank.currency[(getIndexOfCurrentPlayer() + 1) % NUMBER_PLAYERS];
+		this.currentCurrency3Values.innerHTML = game.player.bank.currency[(getIndexOfCurrentPlayer() + 2) % NUMBER_PLAYERS];
+		this.currentCurrency4Values.innerHTML = game.player.bank.currency[(getIndexOfCurrentPlayer() + 3) % NUMBER_PLAYERS];
 	};
 	
 	this.updateOtherPlayers = function(game) {
 		let playerIndex = getNextPlayer();
 		for (let i = 0; i < (game.players.length - 1); i++) {
-			this["PlayerName" + i].innerHTML = game.players[(playerIndex + i) % NUMBER_PLAYERS].name;
-	
-			this["Mandates" + i].innerHTML = "Mandates: " + game.players[(playerIndex + i) % NUMBER_PLAYERS].mandates.length;
-	
-			this["Commodity1" + i].innerHTML = game.commodityNames[0];
-			this["Commodity2" + i].innerHTML = game.commodityNames[1];
-			this["Commodity3" + i].innerHTML = game.commodityNames[2];
-			this["GoldValues" + i].innerHTML = game.players[(playerIndex + i) % NUMBER_PLAYERS].bank.gold;
-			this["Currency1" + i].innerHTML = game.players[(playerIndex + i) % NUMBER_PLAYERS].nativeCurrency;
-			this["Currency2" + i].innerHTML = game.players[(playerIndex + i + 1) % NUMBER_PLAYERS].nativeCurrency;
-			this["Currency3" + i].innerHTML = game.players[(playerIndex + i + 2) % NUMBER_PLAYERS].nativeCurrency;
-			this["Currency4" + i].innerHTML = game.players[(playerIndex + i + 3) % NUMBER_PLAYERS].nativeCurrency;			
-			this["Commodity1Values" + i].innerHTML = game.players[(playerIndex + i) % NUMBER_PLAYERS].bank.commodities[0];
-			this["Commodity2Values" + i].innerHTML = game.players[(playerIndex + i) % NUMBER_PLAYERS].bank.commodities[1];
-			this["Commodity3Values" + i].innerHTML = game.players[(playerIndex + i) % NUMBER_PLAYERS].bank.commodities[2];
-			this["Currency1Values" + i].innerHTML = game.players[playerIndex].bank.currency[playerIndex];
-			this["Currency2Values" + i].innerHTML = game.players[playerIndex].bank.currency[(playerIndex + 1) % NUMBER_PLAYERS];
-			this["Currency3Values" + i].innerHTML = game.players[playerIndex].bank.currency[(playerIndex + 2) % NUMBER_PLAYERS];
-			this["Currency4Values" + i].innerHTML = game.players[playerIndex].bank.currency[(playerIndex + 3) % NUMBER_PLAYERS];
-		
+			let id = "player" + i;
+			$(id + "Info").style = "background-color: " + game.players[playerIndex + i].currencyColor;
+			$(id + "Name").innerHTML = game.players[playerIndex + i].name;
+			$(id + "Name").style = "color: white";
+			$(id + "CurrencyName").innerHTML = "Currency: the " + game.players[playerIndex + i].currency + " (" + game.players[playerIndex + i].currencySymbol + ")";
+			$(id + "CurrencyName").style = "color: white";
+			$(id + "Mandates").innerHTML = "Mandates: " + game.players[playerIndex + i].mandates.length;
+			$(id + "Mandates").style = "color: white";
+			$(id + "Achievements").innerHTML = "Achievements: " + game.players[playerIndex + i].victoryPoints;
+			$(id + "Achievements").style = "color: white";
+			$(id + "Volatility").innerHTML = "Volatility: " + game.players[playerIndex + i].volatility;
+			$(id + "Volatility").style = "color: white";
 			playerIndex = getNextPlayer();
 		};
 	};
@@ -186,18 +191,131 @@ function UI() {
 		this.commodity1Values.innerHTML = game.market.commodities[0];
 		this.commodity2Values.innerHTML = game.market.commodities[1];
 		this.commodity3Values.innerHTML = game.market.commodities[2];
-		this.currency1.innerHTML = game.players[0].nativeCurrency;
-		this.currency2.innerHTML = game.players[1].nativeCurrency;
-		this.currency3.innerHTML = game.players[2].nativeCurrency;
-		this.currency4.innerHTML = game.players[3].nativeCurrency;
+		this.currency1.innerHTML = game.players[0].currency;
+		this.currency2.innerHTML = game.players[1].currency;
+		this.currency3.innerHTML = game.players[2].currency;
+		this.currency4.innerHTML = game.players[3].currency;
 		this.currency1Values.innerHTML = game.market.currency[0];
 		this.currency2Values.innerHTML = game.market.currency[1];
 		this.currency3Values.innerHTML = game.market.currency[2];
 		this.currency4Values.innerHTML = game.market.currency[3];
+	
+		let marketElements = $("market").children;
+
+		//TODO: This needs refactoring BADLY!
+
+		for (let j = 0; j < marketElements.length; j++) {
+			for (let i = 0; i < marketElements[j].children.length; i++) {
+				if (!marketElements[j].children[i].classList.contains("market-border")) {
+					marketElements[j].children[i].style.background = "white";
+				};
+			};
+		};
+		
+		for (let i = 0; i < (game.market.gold + 1); i++) {
+			for (let j = 0; j < marketElements.length; j++) {
+				for (let k = 0; k < marketElements[j].children.length; k++) {
+					if (marketElements[j].children[k].id === (GOLD + "_" + i)) {
+						marketElements[j].children[k].style.background = GOLD_COLOR;
+					};
+				};
+			};
+		};
+		
+		for (let i = 0; i < (game.market.commodities[0] + 1); i++) {
+			for (let j = 0; j < marketElements.length; j++) {
+				for (let k = 0; k < marketElements[j].children.length; k++) {
+					if (marketElements[j].children[k].id === (COMMODITY1 + "_" + i)) {
+						let commodityColor = 
+						marketElements[j].children[k].style.background = GRAIN_COLOR;
+					};
+				};
+			};
+		};
+		
+		for (let i = 0; i < (game.market.commodities[1] + 1); i++) {
+			for (let j = 0; j < marketElements.length; j++) {
+				for (let k = 0; k < marketElements[j].children.length; k++) {
+					if (marketElements[j].children[k].id === (COMMODITY2 + "_" + i)) {
+						let commodityColor = 
+						marketElements[j].children[k].style.background = OIL_COLOR;
+					};
+				};
+			};
+		};
+		
+		for (let i = 0; i < (game.market.commodities[2] + 1); i++) {
+			for (let j = 0; j < marketElements.length; j++) {
+				for (let k = 0; k < marketElements[j].children.length; k++) {
+					if (marketElements[j].children[k].id === (COMMODITY3 + "_" + i)) {
+						let commodityColor = 
+						marketElements[j].children[k].style.background = TECH_COLOR;
+					};
+				};
+			};
+		};
+		
+		for (let i = 0; i < (game.market.currency[0] + 1); i++) {
+			for (let j = 0; j < marketElements.length; j++) {
+				for (let k = 0; k < marketElements[j].children.length; k++) {
+					if (marketElements[j].children[k].id === (CURRENCY1 + "_" + i)) {
+						let commodityColor = 
+						marketElements[j].children[k].style.background = game.players[0].currencyColor;
+						if (i === game.market.currency[0]) {
+							marketElements[j].children[k].innerHTML = game.players[0].currencySymbol;
+						};
+					};
+				};
+			};
+		};
+		
+		for (let i = 0; i < (game.market.currency[1] + 1); i++) {
+			for (let j = 0; j < marketElements.length; j++) {
+				for (let k = 0; k < marketElements[j].children.length; k++) {
+					if (marketElements[j].children[k].id === (CURRENCY2 + "_" + i)) {
+						let commodityColor = 
+						marketElements[j].children[k].style.background = game.players[1].currencyColor;
+						
+						if (i === game.market.currency[1]) {
+							marketElements[j].children[k].innerHTML = game.players[1].currencySymbol;
+						};
+					};
+				};
+			};
+		};
+		
+		for (let i = 0; i < (game.market.currency[2] + 1); i++) {
+			for (let j = 0; j < marketElements.length; j++) {
+				for (let k = 0; k < marketElements[j].children.length; k++) {
+					if (marketElements[j].children[k].id === (CURRENCY3 + "_" + i)) {
+						let commodityColor = 
+						marketElements[j].children[k].style.background = game.players[2].currencyColor;
+						if (i === game.market.currency[2]) {
+							marketElements[j].children[k].innerHTML = game.players[2].currencySymbol;
+						};
+					};
+				};
+			};
+		};
+		
+		for (let i = 0; i < (game.market.currency[3] + 1); i++) {
+			for (let j = 0; j < marketElements.length; j++) {
+				for (let k = 0; k < marketElements[j].children.length; k++) {
+					if (marketElements[j].children[k].id === (CURRENCY4 + "_" + i)) {
+						let commodityColor = 
+						marketElements[j].children[k].style.background = game.players[3].currencyColor;
+						if (i === game.market.currency[3]) {
+							marketElements[j].children[k].innerHTML = game.players[3].currencySymbol;
+						};
+					};
+				};
+			};
+		};
 	};
 	
 	this.updateGlobalEvent = function(game) {	
-		this.globalEventName.innerHTML = game.currentGlobalEvent.name;
+		this.globalEventName.innerHTML = "Global Event: " + game.currentGlobalEvent.name;
+		this.globalEventNameModal.innerHTML = game.currentGlobalEvent.name;
 		this.globalEventText.innerHTML = game.currentGlobalEvent.text;
 		this.globalEventTurnsLeft.innerHTML = game.turnsRemainingInCurrentGlobalEvent + " turns remaining";	
 	};
@@ -269,12 +387,12 @@ function UI() {
 		
 		for (let i = 0; i < NUMBER_PLAYERS; i++) {
 			let option = document.createElement("OPTION");
-			let optionName = document.createTextNode(game.players[(getIndexOfCurrentPlayer() + i) % 4].nativeCurrency);
+			let optionName = document.createTextNode(game.players[(getIndexOfCurrentPlayer() + i) % 4].currency);
 			option.appendChild(optionName);
 			$("tradeWithSelect").appendChild(option);
 		};
 
-		for (let i = 0; i < NUMBER_COMMODITIES; i++) {
+		for (let i = 0; i < COMMODITIES.length; i++) {
 			let option = document.createElement("OPTION");
 			let optionName = document.createTextNode(game.commodityNames[i]);
 			option.appendChild(optionName);
@@ -288,12 +406,12 @@ function UI() {
 		
 		for (let i = 0; i < NUMBER_PLAYERS; i++) {
 			let option = document.createElement("OPTION");
-			let optionName = document.createTextNode(game.players[(getIndexOfCurrentPlayer() + i) % 4].nativeCurrency);
+			let optionName = document.createTextNode(game.players[(getIndexOfCurrentPlayer() + i) % 4].currency);
 			option.appendChild(optionName);
 			$("tradeForSelect").appendChild(option);
 		};
 
-		for (let i = 0; i < NUMBER_COMMODITIES; i++) {
+		for (let i = 0; i < COMMODITIES.length; i++) {
 			let option = document.createElement("OPTION");
 			let optionName = document.createTextNode(game.commodityNames[i]);
 			option.appendChild(optionName);
@@ -312,12 +430,12 @@ function UI() {
 			goldOption2.appendChild(goldOptionName2);
 			$("tradeForSelect").appendChild(goldOption2);
 		
-			let nativeCurrencyOption = document.createElement("OPTION");
-			let nativeCurrencyOptionName = document.createTextNode(game.player.nativeCurrency);
-			nativeCurrencyOption.appendChild(nativeCurrencyOptionName);
-			$("tradeForSelect").appendChild(nativeCurrencyOption);
+			let currencyOption = document.createElement("OPTION");
+			let currencyOptionName = document.createTextNode(game.player.currency);
+			currencyOption.appendChild(currencyOptionName);
+			$("tradeForSelect").appendChild(currencyOption);
 			
-			for (let i = 0; i < NUMBER_COMMODITIES; i++) {
+			for (let i = 0; i < COMMODITIES.length; i++) {
 				let option = document.createElement("OPTION");
 				let optionName = document.createTextNode(game.commodityNames[i]);
 				option.appendChild(optionName);
@@ -326,7 +444,7 @@ function UI() {
 
 
 		} else if (getTypeOfResourceFromName($("tradeWithSelect").value) === CURRENCY) {
-			if ($("tradeWithSelect").value !== game.player.nativeCurrency) {
+			if ($("tradeWithSelect").value !== game.player.currency) {
 				this.removeAllChildren($("tradeForSelect"));
 
 				let goldOption2 = document.createElement("OPTION");
@@ -336,7 +454,7 @@ function UI() {
 				
 				for (let i = 0; i < NUMBER_PLAYERS; i++) {
 					let option = document.createElement("OPTION");
-					let optionName = document.createTextNode(game.players[(getIndexOfCurrentPlayer() + i) % 4].nativeCurrency);
+					let optionName = document.createTextNode(game.players[(getIndexOfCurrentPlayer() + i) % 4].currency);
 					option.appendChild(optionName);
 					$("tradeForSelect").appendChild(option);
 				};
@@ -349,7 +467,7 @@ function UI() {
 	this.updateProduceModal = function(game) {
 		this.removeAllChildren(this.produceCommodity);
 
-		for (let i = 0; i < NUMBER_COMMODITIES; i++) {
+		for (let i = 0; i < COMMODITIES.length; i++) {
 			let option = document.createElement("OPTION");
 			let optionName = document.createTextNode(game.commodityNames[i]);
 			option.appendChild(optionName);
@@ -362,7 +480,7 @@ function UI() {
 		let goldCurrency = document.createTextNode("Gold");
 
 		let playerCurrencyOption = document.createElement("OPTION");
-		let playerCurrency = document.createTextNode(game.player.nativeCurrency);
+		let playerCurrency = document.createTextNode(game.player.currency);
 
 		goldOption.appendChild(goldCurrency);
 		playerCurrencyOption.appendChild(playerCurrency);
@@ -529,10 +647,17 @@ function UI() {
 		this.enableNextButton();		
 	};
 	
+	this.styleVolatility = () => {
+		if (game.player.volatility > (MAX_VOLATILITY - 1)) {
+			this.currentVolatility.style.color = 'red';
+		};
+	};
+		
 	this.init = () => {
 		this.refresh();
 		this.disableGenerateButtons();
 		this.disableTradingButton();
+		this.postNotice("");
 	};
 };
 
