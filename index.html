@@ -84,72 +84,72 @@ Enter into "trade agreements" with other players so everyone can satisfy their m
         </ol>
 
 		<h2>Playing the game</h2>
-        
+        <p>Roll a die to see who goes first. Moving clockwise, players take turns in which they can:
         <ol>
-            <li>Draw a <b>global event</b> card.</li>
-			<li>Players take <b>turns</b> for the number of rounds indicated on the global event. Each turn, players take <b>2</b> actions: 
-					<p></p>
-				<ol>
-					<li>Start your turn by taking a <b>growth</b> action, which can be any of the following:
-            <ul>
-                <li><b>Produce:</b> Pay gold or your native currency into the market to add an <a class="indoc" href="#value">equal value</a> of any one commodity to your bank. These new commodities are added from out of play (not from the market).</li>
-                <li><b>Mine gold:</b> Add two gold to your bank from out of play.</li>
-                <li><b>Print currency:</b> If there is more gold in your bank than your native currency, add the difference in native currency to your bank from out of play. Then, pay one gold.</li>
-                <li><b>Draw mandate:</b>Add a mandate card to your hand</li>
-            </ul></li>
-					<li>Next, you may take another growth action, or take a <b>trade</b> action instead: exchange an amount of any single resource in your bank for an <a href="#value">equivalent value</a> of another resource in the market.
-                	
-				<ul>
-						<li><b>Currency</b> can only be traded for <b>currency</b>.</li>
-						<li><b>Commodities</b> can only be traded for <b>commodities</b>.</li>
-						<li>Exceptions to these rules are <b>Gold</b> and <b>your native currency</b>. These are universal resources for that can be traded for <b>any other resource</b> (and vice versa).</li> 
-				</ul></li>
-            
-			</ol>
-            </li>
-        </ul>
+		<li>Take any 1 of the following <b>growth</b> actions:
+    		<ul>
+			<li><b>Mint</b> either 1 gold or 2 native currency, adding it to your reserves</li>
+			<li><b>Drill</b> for 3 oil, adding it to your reserves</li>
+			<li><b>Manufacture</b> resources, discarding either 3 oil from reserves to draw 2 electricity, or discarding 2 electricity to draw 1 technology</li>
+			<li><b>Draw</b> mandates (a player may have up to 3 unsatisfied mandates at once)<li>
+			</li>
+			</ul>
+		<li>Then, take _either_ a second growth action, or 1 of the following *trade* actions:
+		<ul>
+			<li><b>Buy</b>:
+        		<ul>
+				<li><b>From another player</b>: if a player is offering the resources you wish to buy for sale, pay that player an equivalent amount of your native currency (or gold). Then, take the resources for sale and place them in your reserves.</li>
+				<li><b>From the market:</b> if the desired amount of resources are available in the market, you may pay any currency (not just your native currency), or gold. Place your payment in the corresponding column in the market, then take the resources from the market and place them in your reserves.</li>
+				</ul>
         
-        <br>At any time during your turn, when you complete a mandate, you can either <b>claim an achievement</b> or <b>remove a volatility point</b>. 
-                
-            </li>
-            <li><b>Resolve the global event</b> by determing success or failure, based on the card. Then, take the corresponding action on the card.</li>
-        <li>Each player draws a new mandate card.</li>
-		<li>Repeat steps 1 - 4 until <b>5</b> global events have been resolved.</li>
-        </ol>
+						<div class="bd-callout bd-callout-info">
+			<h4>Notes on buying</h4>
+							<p><b>"Splitting" purchases is not allowed.</b> For example, if you want to buy 3 oil from another player, you _must_ buy a single sale offer for 3 oil from a single player; buying 1 oil from three different players is not allowed, nor is buying 3 oil from a 5-oil sale offer. <b>Overpaying is allowed</b> if an exact trade is not available.</p></div>
+        
+			</li>
+			<li><b>Sell</b>:
+				<ul><li><b>To another player</b>: place the amount of resources you wish to sell from your reserves in front of your play area where others can see, and declare publicly that you are selling them. The sale is complete when another player buys them.</li>
+					<li><b>On the market</b>: place the resources you wish to sell into the market; there must be available spots in the corresponding resource column to complete the trade. Then, take from the market an equivalent amount of your native currency, or gold and place it into your reserves.</li>
+				</ul>
+			</li>
+			</ul>
+		</p>			
+<p>The goal of Economicon is to use trading to satisfy your nation's mandates. Your mandates are satisfied immediately whenever their conditions are met; it does not have to be your turn.</p>
+
+		<p>The game ends once a player has satisfied <b>5</b> mandates.</p>
+           
+		<h2>The Market</h2>
+		
+		<p>When players can't (or don't want to) trade amongst themselves, they can trade using the market instead. </p>
+
+<p>In the market there are 8 columns representing each tradable unit (three resources, four currencies, and gold). When trading in the market, players always take units from, and add units to, the top of the column; there are 12 available spots for each type of unit.</p>
+
+		<p><b>Currency and gold</b>: The columns for currency and gold have a number in each available slot. The lowest visible number in each column represents the <b>X</b> value on the corresponding units. This represents how many resources a single unit can buy; for example, if the value of gold is 5, it can purchase 5 units of any resource. In accordance with supply and demand, this number goes up as the supply goes down, and vice versa.</p>
+
+		<p><b>Resources</b>: When a resource column is full, it is said to be <b>saturated</b>. When the market is saturated with a particular resource, no more resources of that type may be <em>sold</em> until a player buys at least one unit of that resource from the market, removing the saturated condition.</p>
+
+		<p>When a resource column is empty, it is said to be <b>scarce</b>. When a resource is scarce in the market, no more resources of that type may be <em>bought</em> until a player sells at least one unit of that resource to the market, removing the scarce condition.</p>
 		
 		<h2>Winning the game</h2>
 
-        <p>The winner of Economicon is the player with the most achievements after 5 global events have been resolved <b>without having three or greater volatility points.</b></p>
-        
-        <div class="bd-callout bd-callout-danger">
-			<h4>Any player with three or greater volatility points <u>cannot</u> win the game!</h4>
-			<p>You can remove volatility points by completing mandates or succeeding in global events.</p>
-		</div>
-
-        <p>To determine your total achievements, add your achievements from completed mandates and successful global events, then claim any bonus achievements:</p>
-        
+<p>Once a player has satisfied 5 mandates, trading stops immediately. Each player adds up their victory points:
+    <ul>
+	    <li><b>Each satisfied mandate</b>: 5 points</li>
+    	<li>Each unit in reserves:
         <ul>
-            <li><b>Commodities trader (1 bonus achievement):</b> Hold more total commodities in your bank than any other player</li>
-            <li><b>Forex trader (1 bonus achievement):</b> Hold more currency in your bank than any other player</li>
-            <li><b>Most stable economy (2 bonus achievements):</b> Have 0 volatility points (multiple players may earn)</li>
-            <li><b>Full faith and confidence (3 bonus achievements):</b> Hold more gold in your bank than any other player</li>
-        </ul>
-        
-        
-        <h2 id="value">Value</h2>
-			<p>
-				Every resources in the market has a unique <b>value</b>. When trading, look at the <b>values</b> of the units you're trading. These are the number of units needed for a fair trade.
-			</p>
+		<li><b>Technology</b>: 3</li>
+		<li><b>Electricity</b>: 2</li>
+		<li><b>Oil</b>: 1</li>
+		<li><b>Gold</b>: X</li>
+		<li><b>Currency</b>: X</li>
+		</ul>
+	    </li>
+		</ul>
+		</p>
 
-            <p>
-				The <b>value</b> of all units starts at <b>1</b>. For every <b>5</b> of a unit in the market, the value count increases by 1.
-			</p>
+		<p>The value of gold and currency units are equal to their market value.</p>
 
-		<div class="bd-callout bd-callout-info">
-			<h4>Example: Using values when trading</h4>
-			<p>You are using your <b>trade</b> action to trade <b>grain</b> for <b>gold</b>. If grain's value is <b>3</b> and gold's value is <b>1</b>, then a fair trade would be <b>3</b> grain for <b>1</b> gold.
-			</p>
-		</div>
+<p>The player with the most victory points is the winner. In the event of a tie, the player with more <em>units</em> of gold in reserves (regardless of value) wins. If there's still a tie, the winner is the player with the most units of native currency. If players remain tied based on victory points, units of gold and units of native currency, the game is a draw.</p>
 		
         <h2>Contact and License</h2>
 
